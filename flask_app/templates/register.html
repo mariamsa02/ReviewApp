@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+<div class="wrapper">
+    <h2>Register</h2>
+
+    <form method="POST" action="">
+        {{form.hidden_tag() }}
+        <div class="input-form">
+            {{ form.username(class="input_style", placeholder="Username") }}
+        </div>
+
+        <div class="input-form">
+            {{ form.password(class="input_style", placeholder="Password") }}
+        </div>
+
+        <div class="form-button">
+        {{ form.submit(class="form-button")}}
+        </div>
+
+    </form>
+
+    <div class="page-link">
+        <p>Already have an account?
+            <a href="{{url_for('login')}}">Login</a>
+        </p>
+    </div>
+
+</body>
+</html>
