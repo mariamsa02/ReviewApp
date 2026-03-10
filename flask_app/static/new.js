@@ -1,0 +1,98 @@
+// global state, so when the page is opened it's always on "Movie"
+let currentCategory = "Movie";
+
+document.addEventListener('DOMContentLoaded', () => {
+    // element selectors
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('media-search');
+    const categoryBtns = document.querySelectorAll('.sidebar-btn');
+    const resultsDiv = document.getElementById('search-results');
+
+    // set default colors etc, so they can change when selected.
+    const movieBtn = document.querySelector('.sidebar-btn');
+    if (movieBtn) movieBtn.style.background = "var(--accent-color)";
+
+    // when a category button is clicked, the results and search bar become empty
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            resultsDiv.innerHTML = "";
+            searchInput.value = "";
+
+            const textEl = btn.querySelector('.sidebar-text');
+            const text = textEl ? textEl.innerText : "";
+
+            categoryBtns.forEach(b => b.style.background = "");
+            btn.style.background = "var(--accent-color)";
+
+            // match the text to the category name. Should probably be the same.
+            if (text === "Movies") currentCategory = "Movie";
+            else if (text === "TV Shows") currentCategory = "TV";
+            else if (text === "Books") currentCategory = "Book";
+        });
+    });
+
+    if (searchBtn) {
+        searchBtn.addEventListener('click', async () => {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            // URL for all categories
+            const url = `/api/search?q=${encodeURIComponent(query)}&category=${currentCategory}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResults(data, currentCategory);
+            } catch (error) {
+                console.error("Search error:", error);
+            }
+        });
+    }
+
+  searchInput.addEventListener("keypress", function(event) {
+  // if the user presses the "Enter" key on the keyboard, the button is clicked
+  if (event.key === "Enter") {
+      document.getElementById("search-btn").click();
+  }
+});
+
+}); // closes DOMContentLoaded
+
+// display the search results
+function displayResults(data, category) {
+    const resultsDiv = document.getElementById('search-results');
+    resultsDiv.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        resultsDiv.innerHTML = "<p>No results found.</p>";
+        return;
+    }
+
+    data.forEach(item => {
+        let title, imgPath;
+        if (category === "Book") {
+            title = item.volumeInfo.title;
+            imgPath = item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : '';
+        } else {
+            title = item.title || item.name;
+            imgPath = item.poster_path ? `https://image.tmdb.org/t/p/w200${item.poster_path}` : '';
+        }
+
+        const card = document.createElement('div');
+        card.className = "results-card";
+        card.innerHTML = `
+            <img src="${imgPath}" alt="${title}" class="result-img">
+            <div class="result-info">
+                <h3>${title}</h3><br/>
+                <button type="button" class="select-btn">Select</button>
+            </div>
+        `;
+
+        card.querySelector('.select-btn').addEventListener('click', () => {
+            if (typeof selectMedia === "function") {
+                selectMedia(title, imgPath, category);
+            }
+        });
+
+        resultsDiv.appendChild(card);
+    }); // closes data.forEach
+} // closes displayResults

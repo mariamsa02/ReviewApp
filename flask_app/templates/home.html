@@ -1,15 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
-<body>
-<h1>Home</h1>
-<a href="{{url_for('login')}}">Login</a><br>
-<a href="{{url_for('register')}}">Register</a><br>
-<a href="{{url_for('logout')}}">Logout</a><br>
 
+<body>
+    <!-- Sidebar for logo and logout -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../static/images/logo.png" alt="star_logo" class="sidebar-logo">
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="http://127.0.0.1:5000/new" class="nav-link">
+                    <span class="nav-text">New Review</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sidebar-footer">
+            <li class="nav-item">
+                <!--Placeholder until the light mode is coded-->
+                <!--Ideally there will be multiple themes-->
+                <a href="{{url_for('logout')}}" class="nav-link">
+                    <span class="nav-text">Light Mode</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{url_for('logout')}}" class="nav-link">
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar for review filtering -->
+    <aside class="category-sidebar" id="categorySidebar">
+        <div class="category-sidebar-header">
+            <h3>Filter</h3>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-group">
+                <h4 class="sidebar-group-title">Category</h4>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">Movies</span>
+                </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">TV Shows</span>
+                </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">Books</span>
+                </button>
+            </div>
+            <div class="sidebar-group">
+                <h4 class="sidebar-group-title">Rating</h4>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">⭐</span>
+                </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">⭐⭐</span>
+                </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">⭐⭐⭐</span>
+                </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">⭐⭐⭐⭐</span>
+                </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-text">⭐⭐⭐⭐⭐</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <section class="review-grid-section">
+                    <div id="review-container">
+
+                        {% for review in reviews %}
+                        <div class="review"
+                            onclick="openModal('{{ review.title|safe }}', '{{ review.image_url }}', '{{ review.content|safe }}', '{{ review.rating }}', '{{ review.date_posted }}')">
+                            <h3>{{ review.title }}</h3>
+                            <div class="review-content">
+                                <img class="review-image" src="{{ review.image_url }}" alt="{{ review.title }}">
+                                <p>
+                                    {{ review.content[:180] }}
+                                    {% if review.content|length > 180 %}...{% endif %}
+                                </p>
+                            </div>
+                            <div class="review-rating">
+                                <strong>Rating:</strong>
+                                <span class="stars">
+                                        {% for i in range(review.rating|int) %}★{% endfor %}{% for i in range(5 - review.rating|int) %}☆{% endfor %}
+                                    </span>
+                            </div>
+                                                </div>
+
+                        {% endfor %}
+                    </div>
+
+            </section>
+        </div>
+
+
+
+    </main>
+
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span><h2 class="modal-title"></h2>
+            <img class="modal-image" src="" alt="" />
+            <p class="modal-review-content"></p>
+            <div class="modal-metadata"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
 </body>
+
 </html>

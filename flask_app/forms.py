@@ -5,6 +5,7 @@ from flask_app.models import User, Review, Category
 
 
 class RegisterForm(FlaskForm):
+    # should include email later?
     username = StringField(validators=[InputRequired(),
                                        Length(min=4, max=20)],
                            render_kw={"placeholder": "Username"})
@@ -14,18 +15,17 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Register")
 
     def validate_username(self, username):
+        # check User table for existing username by filtering
         existing_username = User.query.filter_by(
             username=username.data).first()
         if existing_username:
             raise ValidationError(
-                "That username already exists. Please choose a different one.")
+            "That username already exists. Please choose a different one.")
 
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired(),
-                                       Length(min=4, max=20)],
+    username = StringField(validators=[InputRequired()],
                            render_kw={"placeholder": "Username"})
-    password = PasswordField(validators=[InputRequired(),
-                                         Length(min=8, max=20)],
+    password = PasswordField(validators=[InputRequired()],
                              render_kw={"placeholder": "Password"})
     submit = SubmitField("Login")
