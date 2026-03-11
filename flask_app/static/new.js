@@ -80,14 +80,14 @@ function displayResults(data, category) {
         const card = document.createElement('div');
         card.className = "results-card";
         card.innerHTML = `
-            <img src="${imgPath}" alt="${title}" class="result-img">
-            <div class="result-info">
-                <h3>${title}</h3><br/>
-                <button type="button" class="select-btn">Select</button>
+        <img src="${imgPath}" alt="${title}" class="result-img">
+         <div class="result-info">
+                <h3 class="result-title">${title}</h3><br/>
             </div>
+
         `;
 
-        card.querySelector('.select-btn').addEventListener('click', () => {
+        card.querySelector('.result-img').addEventListener('click', () => {
             if (typeof selectMedia === "function") {
                 selectMedia(title, imgPath, category);
             }
