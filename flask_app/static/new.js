@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('media-search');
     const categoryBtns = document.querySelectorAll('.sidebar-btn');
     const resultsDiv = document.getElementById('search-results');
+    const searchTitle = document.querySelector('.search-title');
+    if (searchTitle) searchTitle.innerHTML = `Search for ${currentCategory}`;
+
 
     // set default colors etc, so they can change when selected.
     const movieBtn = document.querySelector('.sidebar-btn');
@@ -18,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsDiv.innerHTML = "";
             searchInput.value = "";
 
+
             const textEl = btn.querySelector('.sidebar-text');
             const text = textEl ? textEl.innerText : "";
 
@@ -28,8 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (text === "Movies") currentCategory = "Movie";
             else if (text === "TV Shows") currentCategory = "TV";
             else if (text === "Books") currentCategory = "Book";
+
+            if (searchTitle) searchTitle.innerHTML = `Search for ${text}`;
         });
     });
+
+
 
     if (searchBtn) {
         searchBtn.addEventListener('click', async () => {
@@ -96,3 +104,10 @@ function displayResults(data, category) {
         resultsDiv.appendChild(card);
     }); // closes data.forEach
 } // closes displayResults
+
+
+
+// select media/selecting a poster
+function selectMedia(title, imgPath, category) {
+
+}
