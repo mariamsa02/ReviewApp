@@ -2,6 +2,11 @@
 let currentCategory = "Movie";
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    });
+
     // element selectors
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('media-search');

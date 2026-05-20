@@ -57,7 +57,9 @@ function closeModal() {
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("review-modal");
     const closeBtn = modal.querySelector(".close-btn");
-
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    });
     // Click x to close (call closeModal function)
     closeBtn.onclick = closeModal;
 
@@ -68,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     }
+
 });
 
 // when a button is clicked, change the color
@@ -78,8 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
            filterBtns.forEach(function(button) {
             // only one button can be the clicked color at a time
                 button.style.background = "";
+                button.style.color = "";
                 });
             btn.style.background = "var(--accent-color)";
+            btn.style.color = "var(--text-white)";
                     });
+
     });
 });

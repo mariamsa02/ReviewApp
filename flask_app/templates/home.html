@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="../static/themes.css">
     <link rel="stylesheet" href="../static/style.css">
+
 </head>
 
 <body>
@@ -24,9 +26,9 @@
             <li class="nav-item">
                 <!--Placeholder until the light mode is coded-->
                 <!--Ideally there will be multiple themes-->
-                <a href="{{url_for('logout')}}" class="nav-link">
+                <button id="theme-toggle" class="nav-link">
                     <span class="nav-text">Light Mode</span>
-                </a>
+                </button>
             </li>
             <li class="nav-item">
                 <a href="{{url_for('logout')}}" class="nav-link">

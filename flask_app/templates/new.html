@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>New Review</title>
+    <link rel="stylesheet" href="../static/themes.css">
     <link rel="stylesheet" href="../static/style.css">
+
 </head>
 <body>
 <nav class="sidebar" id="sidebar">
@@ -19,9 +21,9 @@
         </ul>
         <ul class="sidebar-footer">
             <li class="nav-item">
-                <a href="{{url_for('logout')}}" class="nav-link">
-                    <span class="nav-text">Light Mode</span>
-                </a>
+            <button id="theme-toggle" class="nav-link">
+                <span class="nav-text">Light Mode</span>
+            </button>
             </li>
             <li class="nav-item">
                 <a href="{{url_for('logout')}}" class="nav-link">

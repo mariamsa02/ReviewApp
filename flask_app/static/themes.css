@@ -1,0 +1,69 @@
+/* FONTS */
+@font-face {
+    font-family: 'berk';
+    src: url('./fonts/kkberkbm.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Main/dark mode */
+:root {
+    --accent-color: #FF6BB5;
+    --accent-hover: #ff52b7;
+    --bg-main: #1A1A1A;
+    --bg-card: #2D1F2E;
+    --bg-overlay: rgba(255, 142, 199, 0.05);
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    --border-color: rgba(255, 142, 199, 0.2);
+    --shadow-color: rgba(255, 142, 199, 0.3);
+
+
+    --sidebar-width: 280px;
+    --font-main: 'berk', sans-serif;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --radius-md: 12px;
+}
+
+/* BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; outline: none; }
+
+body.light-mode {
+    --accent-color: #6B7FD9;
+    --accent-hover: #5A6FC8;
+
+
+    --bg-main: #EEF4FB;
+    --bg-card: #DAEAF7;
+    --bg-overlay: rgba(74, 144, 217, 0.05);
+
+    --border-color:rgb(74 144 217 / 32%);
+    --shadow-color: rgba(74, 144, 217, 0.2);
+
+    --text-primary: #1A2A3A;
+    --text-secondary: #4A5A6A;
+
+    --text-white: #FFFFFF;
+}
+
+
+body.light-mode .sidebar {
+    background: linear-gradient(180deg, #E0EDFF 0%, #E8E0FF 100%);
+}
