@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body class="{{current_user.theme }}">
     <!-- Sidebar for logo and logout -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -24,11 +24,12 @@
         </ul>
         <ul class="sidebar-footer">
             <li class="nav-item">
-                <!--Placeholder until the light mode is coded-->
+                <!--Select used instead of buttons-->
                 <!--Ideally there will be multiple themes-->
-                <button id="theme-toggle" class="nav-link">
-                    <span class="nav-text">Light Mode</span>
-                </button>
+                <select id="theme-toggle" class="nav-link">
+                    <option value="dark-mode">Dark Mode</option>
+                    <option value="light-mode">Light Mode</option>
+                </select>
             </li>
             <li class="nav-item">
                 <a href="{{url_for('logout')}}" class="nav-link">
@@ -86,7 +87,7 @@
 
                         {% for review in reviews %}
                         <div class="review"
-                            onclick="openModal('{{ review.title|safe }}', '{{ review.image_url }}', '{{ review.content|safe }}', '{{ review.rating }}', '{{ review.date_posted }}')">
+                        onclick="openModal('{{ review.title|safe }}', '{{ review.image_url }}', '{{ review.content|safe }}', '{{ review.rating }}', '{{ review.date_posted }}')">
                             <h3>{{ review.title }}</h3>
                             <div class="review-content">
                                 <img class="review-image" src="{{ review.image_url }}" alt="{{ review.title }}">

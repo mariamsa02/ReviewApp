@@ -25,7 +25,9 @@ def home():
         },
         {'id': 3,
          'title': 'Kuroshitsuji: Book of Murder',
-         'content': 'murder mystery story orchestrated by the queen to beef with a 13 year old, featuring anime arthur conan doyle, who ends up getting traumatized to ensure Sebastians son always has his books to read. Yay.',
+         'content':
+             'murder mystery story orchestrated by the queen to beef with a 13 year old, featuring anime arthur conan doyle, who ends up getting traumatized to ensure Sebastians son always has his books to read.Yay.',
+
          'rating': 3,
          'image_url': 'https://m.media-amazon.com/images/M/MV5BZTJjMGUyN2ItYjBiNy00OGMyLWJhYTItOGJiMmQ5NjU1NDIzXkEyXkFqcGc@._V1_FMjpg_UX522_.jpg',
          'date_posted': '2026-02-13'}
@@ -134,6 +136,14 @@ def login():
 
     return render_template('login.html', form=form)
 
+
+@app.route("/theme", methods=['POST'])
+@login_required
+def set_theme():
+    theme = request.json.get('theme')
+    current_user.theme = theme
+    db.session.commit()
+    return jsonify({'status': 'ok'})
 
 @app.route("/logout", methods=['GET', 'POST'])
 @login_required

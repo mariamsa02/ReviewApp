@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+    theme = db.Column(db.String(20), nullable=False, default='dark-mode')
 
     # author = user
     # using backref to be able to pull up which user wrote specific reviews with review.author

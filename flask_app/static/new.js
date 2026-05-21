@@ -3,8 +3,23 @@ let currentCategory = "Movie";
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
+    const themeSelect = document.getElementById('theme-toggle');
+    themeSelect.value = document.body.className;
+
+    themeSelect.addEventListener('change', (event) => {
+        const theme = event.target.value;
+        if (theme === 'light-mode') {
+                document.body.classList.add('light-mode');
+        }
+        else {
+                document.body.classList.remove('light-mode');
+        }
+        fetch('/theme', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ theme: theme })
+    });
+
     });
 
     // element selectors
@@ -22,16 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // when a category button is clicked, the results and search bar become empty
     categoryBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            resultsDiv.innerHTML = "";
-            searchInput.value = "";
+    btn.addEventListener('click', () => {
+        resultsDiv.innerHTML = "";
+        searchInput.value = "";
 
+        const textEl = btn.querySelector('.sidebar-text');
+        const text = textEl ? textEl.innerText : "";
 
-            const textEl = btn.querySelector('.sidebar-text');
-            const text = textEl ? textEl.innerText : "";
-
-            categoryBtns.forEach(b => b.style.background = "");
-            btn.style.background = "var(--accent-color)";
+        categoryBtns.forEach(function(button) {
+            button.style.background = "";
+            button.style.color = "";
+        });
+        btn.style.background = "var(--accent-color)";
+        btn.style.color = "var(--text-white)";
 
             // match the text to the category name. Should probably be the same.
             if (text === "Movies") currentCategory = "Movie";
@@ -41,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (searchTitle) searchTitle.innerHTML = `Search for ${text}`;
         });
     });
-
 
 
     if (searchBtn) {
