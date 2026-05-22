@@ -128,8 +128,56 @@ function displayResults(data, category) {
 } // closes displayResults
 
 
+let selectedMedia = {};
 
 // select media/selecting a poster
 function selectMedia(title, imgPath, category) {
+    // Store the selected media in global variable for later use
+    selectedMedia = {title, imgPath, category,};
 
+    document.querySelector('.dynamic-container').innerHTML = '';
+
+    // show the review form with the selected media information
+    showReviewForm();
+}
+
+
+function showReviewForm(){
+    const container = document.querySelector('.dynamic-container');
+        container.innerHTML = `
+        <div class="review-header">
+            <h1 class="title">${selectedMedia.title}</h1>
+            <div class="media-flex">
+               <!-- Left Column: Poster/Cover, Rating, Dates -->
+                <div class="media-left">
+                    <br/><br/>
+                    <img src="${selectedMedia.imgPath}" alt="${selectedMedia.title}" class="media-img">
+                    <div class="rating-dates">
+                        <label>Rating (1-5):</label><br/>
+                         <select id="rating" required>
+                            <option value="1">★☆☆☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="5">★★★★★</option>
+                         </select>
+                            <br/><br/>
+                        <label>Finish Date:</label><br/>
+                        <input type="date" id="finish-date" placeholder="mm/dd/yyyy"/>
+                    </div>
+                </div>
+
+                <!-- Right Column: Review, Tags -->
+                <div class="media-right">
+                    <h3>Review:</h3>
+                    <textarea id="review-text"></textarea><br/><br/>
+
+                    <label>Tags (comma separated):</label><br/>
+                    <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" /><br/><br/>
+
+                    <button onclick="saveReview()">Save Review</button>
+                </div>
+            </div>
+        </div>
+    `;
 }
