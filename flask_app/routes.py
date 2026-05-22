@@ -67,7 +67,7 @@ def save_review():
         image_url = request.form.get('image_url')
         date_finished = request.form.get('date_finished')
 
-        # custom fields like author etc., store as json string
+    # custom fields like author etc., store as json string
         extra_fields = {}
         for key in request.form:
             if key not in ['title', 'category', 'review_text', 'rating', 'image_url', 'date_finished']:
@@ -82,7 +82,7 @@ def save_review():
             image_url=image_url,
             date_finished = date_finished,
             # Save as a string
-            # custom_data=json.dumps(extra_fields),
+            custom_data=json.dumps(extra_fields),
             # Connects to the logged-in user
             author=current_user
         )
@@ -96,6 +96,18 @@ def save_review():
 
     return render_template('new.html')
 
+@app.route("")
+def filter_reviews():
+    filtered = request.args.get('filter')
+    category = request.args.get('category')
+    rating = request.args.get('rating')
+
+    query = Review.query.filter_by(user_id=current_user.id)
+    if category:
+        query = query.filter_by(category=category)
+    if rating:
+        query = query.filter_by(rating=int(rating))
+    reviews = query.all()
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
