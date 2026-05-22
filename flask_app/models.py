@@ -41,6 +41,7 @@ class Review(db.Model):
     # Store custom fields
     custom_data = db.Column(db.Text, nullable=True)
 
+    date_finished = db.Column(db.Text, nullable=True)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 

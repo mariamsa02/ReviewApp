@@ -145,6 +145,11 @@ function selectMedia(title, imgPath, category) {
 function showReviewForm(){
     const container = document.querySelector('.dynamic-container');
         container.innerHTML = `
+        <form method="POST" action="/new">
+        <input type="hidden" name="title" value="${selectedMedia.title}">
+        <input type="hidden" name="image_url" value="${selectedMedia.imgPath}">
+        <input type="hidden" name="category" value="${selectedMedia.category}">
+
         <div class="review-header">
             <h1 class="title">${selectedMedia.title}</h1>
             <div class="media-flex">
@@ -153,8 +158,8 @@ function showReviewForm(){
                     <br/><br/>
                     <img src="${selectedMedia.imgPath}" alt="${selectedMedia.title}" class="media-img">
                     <div class="rating-dates">
-                        <label>Rating (1-5):</label><br/>
-                         <select id="rating" required>
+                        <label>Rating:</label><br/>
+                         <select id="rating" name="rating" required>
                             <option value="1">★☆☆☆☆</option>
                             <option value="2">★★☆☆☆</option>
                             <option value="3">★★★☆☆</option>
@@ -163,21 +168,26 @@ function showReviewForm(){
                          </select>
                             <br/><br/>
                         <label>Finish Date:</label><br/>
-                        <input type="date" id="finish-date" placeholder="mm/dd/yyyy"/>
+                        <input type="date" id="date_finished" name="date_finished" placeholder="mm/dd/yyyy"/>
                     </div>
                 </div>
 
                 <!-- Right Column: Review, Tags -->
                 <div class="media-right">
                     <h3>Review:</h3>
-                    <textarea id="review-text"></textarea><br/><br/>
+                    <textarea id="review-text" name="review_text"></textarea><br/><br/>
 
                     <label>Tags (comma separated):</label><br/>
                     <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" /><br/><br/>
 
                     <button onclick="saveReview()">Save Review</button>
+                    <button onclick="exitReview()">Exit Review</button>
                 </div>
             </div>
         </div>
+            </form>
+
     `;
+    document.querySelectorAll('.sidebar-btn').forEach(btn => btn.disabled = true);
+
 }

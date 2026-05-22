@@ -1,7 +1,7 @@
 // flask_app/static/home.js
 
 // This function recieves the title, image, content, rating, and date_posted from when it is called in the HTML
-function openModal(title, image, content, rating, date_posted) {
+function openModal(title, image, content, rating, date_finished) {
     // It looks inside the HTML for an id review-modal
     const modal = document.getElementById("review-modal");
     // if there is no modal, stop here and return
@@ -15,7 +15,7 @@ function openModal(title, image, content, rating, date_posted) {
 
     // Metadata
     // assign a const for date and ratings
-    const date = date_posted
+    const date = date_finished
     const stars = "★".repeat(parseInt(rating)) + "☆".repeat(5 - parseInt(rating));
     //querySelector finds the modal metadata
     const metadata = modal.querySelector(".modal-metadata");

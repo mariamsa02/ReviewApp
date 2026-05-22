@@ -87,8 +87,8 @@
 
                         {% for review in reviews %}
                         <div class="review"
-                        onclick="openModal('{{ review.title|safe }}', '{{ review.image_url }}', '{{ review.content|safe }}', '{{ review.rating }}', '{{ review.date_posted }}')">
-                            <h3>{{ review.title }}</h3>
+                             onclick='openModal({{ review.title|tojson }}, {{ review.image_url|tojson }}, {{ review.content|tojson }}, {{ review.rating|tojson }}, {{ (review.date_finished or "")|tojson }})'>
+                            <h3>{{ review.title}}</h3>
                             <div class="review-content">
                                 <img class="review-image" src="{{ review.image_url }}" alt="{{ review.title }}">
                                 <p>

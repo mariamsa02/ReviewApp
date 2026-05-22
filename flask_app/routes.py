@@ -33,7 +33,7 @@ def home():
          'date_posted': '2026-02-13'}
     ]
 
-    return render_template('home.html', reviews=mock_reviews)
+    return render_template('home.html', reviews=Review.query.filter_by(user_id=current_user.id).all())
 
 
 @app.route("/api/search")
@@ -54,7 +54,6 @@ def api_search():
     return jsonify(results)
 
 
-### NOT RELEVANT AT CURRENT STAGE ###
 # This is the final stage of the new review process, it is called AFTER the entire form is filled out and saves the review to the database
 @app.route("/new", methods=['GET', 'POST'])
 @login_required
@@ -66,11 +65,12 @@ def save_review():
         content = request.form.get('review_text')
         rating = request.form.get('rating', 1)
         image_url = request.form.get('image_url')
+        date_finished = request.form.get('date_finished')
 
         # custom fields like author etc., store as json string
         extra_fields = {}
         for key in request.form:
-            if key not in ['title', 'category', 'review_text', 'rating', 'image_url']:
+            if key not in ['title', 'category', 'review_text', 'rating', 'image_url', 'date_finished']:
                 extra_fields[key] = request.form.get(key)
 
         # create database object
@@ -80,8 +80,9 @@ def save_review():
             content=content,
             rating=int(rating),
             image_url=image_url,
+            date_finished = date_finished,
             # Save as a string
-            extra_metadata=json.dumps(extra_fields),
+            # custom_data=json.dumps(extra_fields),
             # Connects to the logged-in user
             author=current_user
         )
@@ -90,7 +91,7 @@ def save_review():
         db.session.add(saved_review)
         db.session.commit()
 
-        flash('Review created!', 'success')
+        # flash('Review created!', 'success')
         return redirect(url_for('home'))
 
     return render_template('new.html')
