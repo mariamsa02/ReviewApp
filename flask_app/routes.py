@@ -33,7 +33,17 @@ def home():
          'date_posted': '2026-02-13'}
     ]
 
-    return render_template('home.html', reviews=Review.query.filter_by(user_id=current_user.id).all())
+    category = request.args.get('category')
+    rating = request.args.get('rating')
+
+    query = Review.query.filter_by(user_id=current_user.id)
+    if category:
+        query = query.filter_by(category=category)
+    if rating:
+        query = query.filter_by(rating=int(rating))
+    reviews = query.all()
+
+    return render_template('home.html', reviews=reviews)
 
 
 @app.route("/api/search")
@@ -96,18 +106,6 @@ def save_review():
 
     return render_template('new.html')
 
-@app.route("")
-def filter_reviews():
-    filtered = request.args.get('filter')
-    category = request.args.get('category')
-    rating = request.args.get('rating')
-
-    query = Review.query.filter_by(user_id=current_user.id)
-    if category:
-        query = query.filter_by(category=category)
-    if rating:
-        query = query.filter_by(rating=int(rating))
-    reviews = query.all()
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

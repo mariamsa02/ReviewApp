@@ -93,16 +93,38 @@ document.addEventListener('DOMContentLoaded', () => {
 // when a button is clicked, change the color
 document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.sidebar-btn');
+
+    // checks button on page reload so the current button is highlighted
+    const params = new URLSearchParams(window.location.search);
+    const currentCategory = params.get('category');
+    const currentRating = params.get('rating');
+
     filterBtns.forEach(btn => {
+            const textEl = btn.querySelector('.sidebar-text');
+            const text = textEl ? textEl.innerText.trim() : "";
+
+           if (currentCategory === "Movie" && text === "Movies") btn.style.background = "var(--accent-color)";
+                else if (currentCategory === "TV" && text === "TV Shows") btn.style.background = "var(--accent-color)";
+                else if (currentCategory === "Book" && text === "Books") btn.style.background = "var(--accent-color)";
+                else if (currentRating && text === "⭐".repeat(parseInt(currentRating))) btn.style.background = "var(--accent-color)";
+
+        // click listener
         btn.addEventListener('click', () => {
-           filterBtns.forEach(function(button) {
-            // only one button can be the clicked color at a time
-                button.style.background = "";
-                button.style.color = "";
-                });
-            btn.style.background = "var(--accent-color)";
-            btn.style.color = "var(--text-white)";
-                    });
+
+            if (text == "All Reviews") window.location.href = "/home";
+            else if (text === "Movies") window.location.href = "/home?category=Movie";
+            else if (text === "TV Shows") window.location.href = "/home?category=TV";
+            else if (text === "Books") window.location.href = "/home?category=Book";
+
+            else if (text === "⭐") window.location.href = "/home?rating=1";
+            else if (text === "⭐⭐") window.location.href = "/home?rating=2";
+            else if (text === "⭐⭐⭐") window.location.href = "/home?rating=3";
+            else if (text === "⭐⭐⭐⭐") window.location.href = "/home?rating=4";
+            else if (text === "⭐⭐⭐⭐⭐") window.location.href = "/home?rating=5";
+
+
+});
+
 
     });
 });
