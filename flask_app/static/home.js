@@ -35,6 +35,12 @@ function openModal(title, image, content, rating, date_finished) {
     </p>
     </div>`;
 
+    const editDeleteBtns = modal.querySelector(".modal-btns");
+    editDeleteBtns.innerHTML = ` <div>
+     <button class="modal-btn" id="edit-btn">Edit</button>
+     <button class="modal-btn" id="delete-btn">Delete</button>
+     </div>`;
+
     // classList.add("show") means activate the modal.show in CSS?
     modal.style.display = "block";
     setTimeout(() => {
@@ -87,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     }
+
+
 
 });
 
