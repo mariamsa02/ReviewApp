@@ -12,26 +12,6 @@ from flask_app.models import User, Review, Category
 @app.route("/home")
 @login_required
 def home():
-    # Mock reviews for testing, will be replaced
-    # these are the last two movies I watched IRL lol
-    mock_reviews = [
-        {
-            'id': 2,
-            'title': 'Kuroshitsuji: Book of the Atlantic',
-            'content': 'Very low budget and kind of terrible but fun to watch',
-            'rating': 4,
-            'image_url': 'https://m.media-amazon.com/images/M/MV5BYzNjMjZhYTYtMGRiNS00MGJmLTlkYTUtMDI1Y2QxZjdiZDFhXkEyXkFqcGc@._V1_FMjpg_UX640_.jpg',
-            'date_posted': '2026-02-13'
-        },
-        {'id': 3,
-         'title': 'Kuroshitsuji: Book of Murder',
-         'content':
-             'murder mystery story orchestrated by the queen to beef with a 13 year old, featuring anime arthur conan doyle, who ends up getting traumatized to ensure Sebastians son always has his books to read.Yay.',
-
-         'rating': 3,
-         'image_url': 'https://m.media-amazon.com/images/M/MV5BZTJjMGUyN2ItYjBiNy00OGMyLWJhYTItOGJiMmQ5NjU1NDIzXkEyXkFqcGc@._V1_FMjpg_UX522_.jpg',
-         'date_posted': '2026-02-13'}
-    ]
 
     category = request.args.get('category')
     rating = request.args.get('rating')
@@ -105,6 +85,32 @@ def save_review():
         return redirect(url_for('home'))
 
     return render_template('new.html')
+
+
+@app.route("/delete/<int:review_id>", methods=['POST'])
+@login_required
+def delete_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    db.session.delete(review)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+@app.route("/edit/<int:review_id>", methods=['GET', 'POST'])
+@login_required
+def edit_review(review_id):
+    review = Review.query.get_or_404(review_id)
+
+    if request.method == 'POST':
+        review.title = request.form.get('title')
+        review.content = request.form.get('review_text')
+        review.rating = int(request.form.get('rating'))
+        review.date_finished = request.form.get('date_finished')
+
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('edit.html', review=review)
 
 
 @app.route("/register", methods=['GET', 'POST'])

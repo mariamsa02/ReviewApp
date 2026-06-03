@@ -180,8 +180,9 @@ function showReviewForm(){
                     <label>Tags (comma separated):</label><br/>
                     <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" /><br/><br/>
 
-                    <button onclick="saveReview()">Save Review</button>
-                    <button onclick="exitReview()">Exit Review</button>
+                    <button type="submit">Save Review</button>
+                    <a href="{{ url_for('home') }}">Exit</a>
+
                 </div>
             </div>
         </div>

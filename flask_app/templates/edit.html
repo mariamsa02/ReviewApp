@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Review</title>
+    <link rel="stylesheet" href="../static/themes.css">
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body class="{{ current_user.theme }}">
+<nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../static/images/logo.png" alt="star_logo" class="sidebar-logo">
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{{url_for('home')}}" class="nav-link">
+                    <span class="nav-text">Home Page</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sidebar-footer">
+            <li class="nav-item">
+                <!--Select used instead of buttons-->
+                <!--Ideally there will be multiple themes-->
+                <select id="theme-toggle" class="nav-link">
+                    <option value="dark-mode">Dark Mode</option>
+                    <option value="light-mode">Light Mode</option>
+                </select>
+            </li>
+            <li class="nav-item">
+                <a href="{{url_for('logout')}}" class="nav-link">
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+<aside class="category-sidebar" id="categorySidebar">
+    </aside>
+
+<main class="main-content">
+
+    <div class="review-container">
+        <form method="POST" action="/edit/{{ review.id }}">
+        <input type="hidden" name="title" value="{{review.title}}">
+        <input type="hidden" name="image_url" value="{{review.image_url}}">
+        <input type="hidden" name="category" value="{{review.category}}">
+
+        <div class="review-header">
+            <h1 class="title" contenteditable="true" >{{review.title}}</h1>
+            <div class="media-flex">
+               <!-- Left Column: Poster/Cover, Rating, Dates -->
+                <div class="media-left">
+                    <br/><br/>
+                    <img src="{{review.image_url}}" alt="{{review.title}}" class="media-img">
+                    <div class="rating-dates">
+                        <label>Rating:</label><br/>
+                         <select id="rating" name="rating" required>
+                            <option value="1" {% if review.rating == 1 %}selected{% endif %}>★☆☆☆☆</option>
+                            <option value="2" {% if review.rating == 2 %}selected{% endif %}>★★☆☆☆</option>
+                            <option value="3" {% if review.rating == 3 %}selected{% endif %}>★★★☆☆</option>
+                            <option value="4" {% if review.rating == 4 %}selected{% endif %}>★★★★☆</option>
+                            <option value="5" {% if review.rating == 5 %}selected{% endif %}>★★★★★</option>
+                         </select>
+                            <br/><br/>
+                        <label>Finish Date:</label><br/>
+                        <input type="date" id="date_finished" name="date_finished" value="{{review.date_finished}}"/>
+                    </div>
+                </div>
+
+                <!-- Right Column: Review, Tags -->
+                <div class="media-right">
+                    <h3>Review:</h3>
+                    <textarea id="review-text" name="review_text">{{review.content}}</textarea><br/><br/>
+
+                    <label>Tags (comma separated):</label><br/>
+                    <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" /><br/><br/>
+
+                    <button type="submit">Update Review</button>
+                    <a href="{{ url_for('home') }}">Exit</a>
+
+                </div>
+            </div>
+        </div>
+            </form>
+
+    </div>
+
+
+</main>
+    <script src="{{ url_for('static', filename='edit.js') }}"></script>
+</body>
+</html>

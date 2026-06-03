@@ -92,7 +92,7 @@
 
                         {% for review in reviews %}
                         <div class="review"
-                             onclick='openModal({{ review.title|tojson }}, {{ review.image_url|tojson }}, {{ review.content|tojson }}, {{ review.rating|tojson }}, {{ (review.date_finished or "")|tojson }})'>
+                             onclick='openModal({{ review.title|tojson }}, {{ review.image_url|tojson }}, {{ review.content|tojson }}, {{ review.rating|tojson }}, {{ (review.date_finished or "")|tojson }}, {{ review.id }})'>
                             <h3>{{ review.title}}</h3>
                             <div class="review-content">
                                 <img class="review-image" src="{{ review.image_url }}" alt="{{ review.title }}">
@@ -125,7 +125,12 @@
             <img class="modal-image" src="" alt="" />
             <p class="modal-review-content"></p>
             <div class="modal-metadata"></div>
-            <div class="modal-btns"></div>
+            <div class="modal-btns">
+                <a id="edit-btn" href="">Edit</a>
+                 <form method="POST" id="delete-form" action="">
+                        <button type="submit" id="delete-btn">Delete</button>
+                    </form>
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='home.js') }}"></script>

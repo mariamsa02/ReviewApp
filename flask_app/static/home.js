@@ -1,17 +1,23 @@
 // flask_app/static/home.js
 
 // This function recieves the title, image, content, rating, and date_posted from when it is called in the HTML
-function openModal(title, image, content, rating, date_finished) {
+function openModal(title, image, content, rating, date_finished, id) {
+
     // It looks inside the HTML for an id review-modal
     const modal = document.getElementById("review-modal");
     // if there is no modal, stop here and return
     if (!modal) return;
+
+    document.getElementById("delete-form").action = `/delete/${id}`;
+    document.getElementById("edit-btn").href = `/edit/${id}`;
+
 
 
     // querySelector finds the matching class in the HTML code and the inside is set as what was passed in
     modal.querySelector(".modal-title").innerText = title;
     modal.querySelector(".modal-image").src = image;
     modal.querySelector(".modal-review-content").innerText = content;
+
 
     // Metadata
     // assign a const for date and ratings
@@ -35,12 +41,6 @@ function openModal(title, image, content, rating, date_finished) {
     </p>
     </div>`;
 
-    const editDeleteBtns = modal.querySelector(".modal-btns");
-    editDeleteBtns.innerHTML = ` <div>
-     <button class="modal-btn" id="edit-btn">Edit</button>
-     <button class="modal-btn" id="delete-btn">Delete</button>
-     </div>`;
-
     // classList.add("show") means activate the modal.show in CSS?
     modal.style.display = "block";
     setTimeout(() => {
@@ -57,12 +57,15 @@ function closeModal() {
     setTimeout(() => {
         modal.style.display = "none";
     }, 300);
+
 }
 
 // Makes sure the entire structure of the page loads
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("review-modal");
     const closeBtn = modal.querySelector(".close-btn");
+
+    const deleteForm = document.getElementById("delete-form");
 
     const themeSelect = document.getElementById('theme-toggle');
     themeSelect.value = document.body.className;
@@ -94,9 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
+    deleteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (confirm("Are you sure you want to delete this review?")) {
+        deleteForm.submit();
+    }
+});
 
 });
+
+
+
 
 // when a button is clicked, change the color
 document.addEventListener('DOMContentLoaded', () => {
