@@ -36,34 +36,8 @@
         </ul>
     </nav>
 
-<aside class="category-sidebar" id="categorySidebar">
-        <div class="category-sidebar-header">
-            <h3>New Review</h3>
-        </div>
 
-        <div class="sidebar-content">
-            <div class="sidebar-group">
-                <h4 class="sidebar-group-title">Searchable Categories</h4>
-                <button class="sidebar-btn">
-                    <span class="sidebar-text">Movies</span>
-                </button>
-                <button class="sidebar-btn">
-                    <span class="sidebar-text">TV Shows</span>
-                </button>
-                <button class="sidebar-btn">
-                    <span class="sidebar-text">Books</span>
-                </button>
-            </div>
-            <div class="sidebar-group">
-                <h4 class="sidebar-group-title">Custom Categories</h4>
-                <button class="sidebar-btn">
-                    <span class="sidebar-text">NEW +</span>
-                </button>
-            </div>
-        </div>
-    </aside>
-
-<main class="main-content">
+<main class="main-content single-sidebar">
 <div class="review-form">
 
         <form method="POST" action="/new">
@@ -111,7 +85,7 @@
 
 
 </div>
-</main>
-    <script src="{{ url_for('static', filename='new.js') }}"></script>
+</>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
 </html>

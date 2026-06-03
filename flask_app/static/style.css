@@ -212,6 +212,10 @@ flex-grow: 1;}
     min-height: 100vh;
 }
 
+.main-content.single-sidebar {
+    margin-left: var(--sidebar-width);
+}
+
 .review-grid-section {
     max-width: 1400px;
     margin: 0 auto;

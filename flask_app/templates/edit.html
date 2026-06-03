@@ -36,10 +36,8 @@
         </ul>
     </nav>
 
-<aside class="category-sidebar" id="categorySidebar">
-    </aside>
 
-<main class="main-content">
+<main class="main-content single-sidebar">
 
     <div class="review-container">
         <form method="POST" action="/edit/{{ review.id }}">
@@ -89,6 +87,6 @@
 
 
 </main>
-    <script src="{{ url_for('static', filename='edit.js') }}"></script>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
 </html>
