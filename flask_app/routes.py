@@ -44,6 +44,13 @@ def api_search():
     return jsonify(results)
 
 
+@app.route("/search")
+@login_required
+def search():
+    return render_template('search.html')
+
+
+
 # This is the final stage of the new review process, it is called AFTER the entire form is filled out and saves the review to the database
 @app.route("/new", methods=['GET', 'POST'])
 @login_required
@@ -56,6 +63,7 @@ def save_review():
         rating = request.form.get('rating', 1)
         image_url = request.form.get('image_url')
         date_finished = request.form.get('date_finished')
+
 
     # custom fields like author etc., store as json string
         extra_fields = {}
@@ -84,7 +92,11 @@ def save_review():
         # flash('Review created!', 'success')
         return redirect(url_for('home'))
 
-    return render_template('new.html')
+    return render_template('new.html',
+                           title=request.args.get('title'),
+                           image_url=request.args.get('image_url'),
+                           category=request.args.get('category')
+                           )
 
 
 @app.route("/delete/<int:review_id>", methods=['POST'])
