@@ -38,6 +38,7 @@
 
 
 <main class="main-content single-sidebar">
+    <div class ="form-container">
 <div class="review-form">
 
         <form method="POST" action="/new">
@@ -70,11 +71,10 @@
                 <!-- Right Column: Review, Tags -->
                 <div class="media-right">
                     <h3>Review:</h3>
-                    <textarea id="review-text" name="review_text"></textarea><br/><br/>
+                    <textarea id="review-text" name="review_text"></textarea>
 
-                    <label>Tags (comma separated):</label><br/>
-                    <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" /><br/><br/>
-
+                    <label>Tags (comma separated):</label>
+                    <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" />
                     <button type="submit">Save Review</button>
                     <a href="{{ url_for('home') }}">Exit</a>
 
@@ -85,7 +85,8 @@
 
 
 </div>
-</>
+    </div>
+</main>
     <script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
 </html>

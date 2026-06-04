@@ -41,12 +41,11 @@
 
     <div class="review-container">
         <form method="POST" action="/edit/{{ review.id }}">
-        <input type="hidden" name="title" value="{{review.title}}">
         <input type="hidden" name="image_url" value="{{review.image_url}}">
         <input type="hidden" name="category" value="{{review.category}}">
 
         <div class="review-header">
-            <h1 class="title" contenteditable="true" >{{review.title}}</h1>
+            <input type="text" name="title" value="{{ review.title }}" class="title-input">
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->
                 <div class="media-left">
