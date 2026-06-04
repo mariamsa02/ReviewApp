@@ -74,12 +74,16 @@
                     <textarea id="review-text" name="review_text"></textarea>
 
                     <label>Tags (comma separated):</label>
-                    <input type="text" id="tags-input" placeholder="e.g. fantasy, drama" />
-                    <button type="submit">Save Review</button>
-                    <a href="{{ url_for('home') }}">Exit</a>
+                    <input type="text" class="tags-input" id="tags-input" placeholder="e.g. fantasy, drama" />
 
                 </div>
             </div>
+
+             <div class = "review-btns">
+                        <button type="submit" class="review-btn">Save Review</button>
+                        <a class="review-btn" href="{{ url_for('home') }}" >Exit</a>
+                    </div>
+
         </div>
             </form>
 

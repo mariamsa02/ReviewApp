@@ -1,3 +1,6 @@
+# to do: update the look of buttons etc on review forms, fix formatting
+# to do: custom category/review routes
+
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
 from flask_app import app, db, bcrypt
