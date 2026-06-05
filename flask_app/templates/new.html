@@ -53,10 +53,9 @@
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->
                 <div class="media-left">
-                    <br/><br/>
                     <img src="{{ image_url }}" alt="{{ title }}" class="media-img">
                     <div class="rating-dates">
-                        <label>Rating:</label><br/>
+                        <label>Rating:</label>
                          <select id="rating" name="rating" required>
                             <option value="1">★☆☆☆☆</option>
                             <option value="2">★★☆☆☆</option>
@@ -64,25 +63,24 @@
                             <option value="4">★★★★☆</option>
                             <option value="5">★★★★★</option>
                          </select>
-                            <br/><br/>
-                        <label>Finish Date:</label><br/>
+                        <label>Finish Date:</label>
                         <input type="date" id="date_finished" name="date_finished" placeholder="mm/dd/yyyy"/>
                     </div>
                 </div>
 
                 <!-- Right Column: Review, Tags -->
                 <div class="media-right">
+                    <h3 class="review-label">Review:</h3>
                     <textarea id="review-text" name="review_text"></textarea>
 
-                    <label class="tags-label">Tags (comma separated):</label>
+                    <p class="tags-label">Tags (comma separated):</p>
                     <input type="text" class="tags-input" id="tags-input" placeholder="e.g. fantasy, drama" />
 
                 </div>
             </div>
 
              <div class = "review-btns">
-                        <button type="submit" class="review-btn">Save</button>
-                        <a class="review-btn" href="{{ url_for('home') }}" >Exit</a>
+                        <button type="submit" class="review-btn">Save Review</button>
                     </div>
 
         </div>
