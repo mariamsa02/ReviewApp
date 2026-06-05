@@ -69,3 +69,7 @@ body.light-mode {
 body.light-mode .sidebar {
     background: linear-gradient(180deg, #E0EDFF 0%, #E8E0FF 100%);
 }
+
+body.light-mode .review-btn:hover {
+    color: var(--text-white);
+}
