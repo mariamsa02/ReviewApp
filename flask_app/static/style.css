@@ -400,6 +400,60 @@ flex-grow: 1;}
 .modal-content::-webkit-scrollbar-track { background: var(--bg-main); }
 .modal-content::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 4px; }
 
+.modal-btns {
+    display: inline;
+    }
+
+.modal-btns {
+    display: inline;
+    }
+
+.modal-btns {
+    display: flex;
+    gap: 20px;
+}
+
+.delete-btn {
+    margin-top: 20px;
+    color: var(--text-primary);
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    font-size: 0.85 rem;
+    font-family: var(--font-main);
+    line-height: 1;
+    cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+}
+
+.edit-btn {
+    margin-top: 20px;
+    color: var(--text-primary);
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    font-size: 0.85 rem;
+    font-family: var(--font-main);
+    line-height: 1;
+    cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+
+}
+
+.edit-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+
+}
+
+
 
 /* SEARCH AREA */
 .search-container {
