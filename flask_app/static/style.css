@@ -479,33 +479,12 @@ font-size: 1.5rem;
     color: var(--accent-color);
 }
 
-/* FOR EDITING */
-.title-input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    font-size: 2rem;
-    width: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 /* REVIEW FORM */
 
 
 .review-header {
-        color: var(--accent-color);
+    color: var(--accent-color);
     margin-bottom: 25px;
     margin-top: 20px;
   }
@@ -660,3 +639,15 @@ cursor: pointer;
 
 
   }
+
+/* FOR EDITING */
+.title-input {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--accent-color);
+        font-size: 30px;
+    width: 100%;
+    text-align: center;
+
+}
