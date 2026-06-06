@@ -335,20 +335,6 @@ flex-grow: 1;}
 }
 
 
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    color: var(--text-secondary);
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    line-height: 1;
-}
-
-.close-btn:hover { color: var(--accent-color); }
-
 .modal-title {
     font-size: 2rem;
     color: var(--accent-color);
@@ -400,58 +386,64 @@ flex-grow: 1;}
 .modal-content::-webkit-scrollbar-track { background: var(--bg-main); }
 .modal-content::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 4px; }
 
-.modal-btns {
-    display: inline;
-    }
+
+/*INSIDE MODAL-- BUTTONS*/
 
 .modal-btns {
-    display: inline;
-    }
-
-.modal-btns {
+    position: absolute;
+    top: 20px;
+    right: 60px;
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    align-items: center;
 }
 
+
 .delete-btn {
-    margin-top: 20px;
-    color: var(--text-primary);
-    background: var(--border-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 8px 16px;
-    font-size: 0.85 rem;
-    font-family: var(--font-main);
-    line-height: 1;
+    color: var(--text-secondary);
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
-      transition: transform 0.2s ease-in-out;
+    transition: 0.2s;
+    line-height: 1;
+    background: transparent;
 }
 
 .edit-btn {
-    margin-top: 20px;
-    color: var(--text-primary);
-    background: var(--border-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 8px 16px;
-    font-size: 0.85 rem;
-    font-family: var(--font-main);
-    line-height: 1;
+    color: var(--text-secondary);
+    font-size: 20px;
     cursor: pointer;
-      transition: transform 0.2s ease-in-out;
-}
+    transition: 0.2s;
+    line-height: 1;
+    }
 
 .delete-btn:hover {
-    background: var(--accent-color);
-    transform: scale(1.1);
+    color: var(--accent-color);
 
 }
 
 .edit-btn:hover {
-    background: var(--accent-color);
-    transform: scale(1.1);
+    color: var(--accent-color);
+    }
 
+#delete-form {
+    display: flex;
+    align-items: center;
 }
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: var(--text-secondary);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+}
+
+.close-btn:hover { color: var(--accent-color); }
 
 
 
