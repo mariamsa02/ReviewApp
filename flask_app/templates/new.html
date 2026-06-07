@@ -42,14 +42,18 @@
     <div class ="form-container">
 
 <div class="review-form">
-
         <form method="POST" action="/new">
         <input type="hidden" name="title" value="{{ title }}">
         <input type="hidden" name="image_url" value="{{ image_url }}">
         <input type="hidden" name="category" value="{{ category }}">
 
         <div class="review-header">
-            <h1 class="title">{{ title }}</h1>
+
+            <h1 class="review-title">{{ title }}</h1>
+    <span class="review-close">
+        <a id="review-close" href="">&times;</a>
+    </span>
+
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->
                 <div class="media-left">
