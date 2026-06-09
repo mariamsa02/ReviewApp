@@ -48,6 +48,9 @@
 
         <div class="review-header">
             <input type="text" name="title" value="{{ review.title }}" class="title-input">
+                <span class="edit-close">
+                    <a id="edit-close" href="{{url_for('home')}}">&times;</a>
+                </span>
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->
                 <div class="media-left">

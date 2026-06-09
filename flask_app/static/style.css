@@ -591,7 +591,6 @@ font-size: 1.5rem;
 /* REVIEW FORM */
 
 .review-close {
-
     color: var(--text-secondary);
     font-size: 23px;
     font-weight: bold;
@@ -777,3 +776,17 @@ cursor: pointer;
     text-align: center;
 
 }
+
+.edit-close {
+    color: var(--text-secondary);
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.edit-close:hover { color: var(--accent-color); }

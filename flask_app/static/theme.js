@@ -20,7 +20,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    // for new.html
-    document.getElementById("review-close").href = `/search`;
-
-});
+    });
