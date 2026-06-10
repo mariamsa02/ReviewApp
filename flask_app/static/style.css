@@ -816,7 +816,6 @@ cursor: pointer;
 
 .category-flex {
     color: var(--accent-color);
-    margin-bottom: 25px;
     margin-top: 20px;
       display: flex;
   justify-content: center;
@@ -826,8 +825,8 @@ cursor: pointer;
   }
 
 .category-title {
-    font-size: 25px;
-    padding: 8px 16px;
+    font-size: 26px;
+    padding: 16px;
 }
 
 .category-form {
@@ -848,9 +847,8 @@ cursor: pointer;
 
 }
 .category-btn {
-    margin-top: 20px;
     color: var(--text-primary);
-    background: var(--border-color);
+    background: var(--bg-overlay);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     padding: 8px 16px;
@@ -863,23 +861,66 @@ cursor: pointer;
 }
 
 .category-btn:hover {
+    background: var(--border-color);
+    transform: scale(1.05);
+}
+
+.save-btn {
+    margin-top: 25px;
+    color: var(--text-primary);
     background: var(--accent-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.save-btn:hover {
     transform: scale(1.1);
+
 
 }
 
 .fields {
-    padding: 20px;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 .category-field1, .category-field2, .category-field3 {
-    padding: 20px;
+    padding: 10px;
 
 }
 
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+#category-field2 {
+  display: none;
 }
+
+#category-field3 {
+  display: none;
+}
+
+#add-field {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.category-field, .category-name {
+    display: flex;
+
+    height: 30px;
+    padding: 8px 10px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.field-label, .category-label {
+    font-size: 16px;
+        color: var(--text-secondary);
+
+    }

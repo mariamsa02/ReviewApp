@@ -53,7 +53,7 @@ def search():
     return render_template('search.html')
 
 
-@app.route("/custom")
+@app.route("/custom", methods=['GET', 'POST'])
 @login_required
 def custom():
     return render_template('custom_category.html')

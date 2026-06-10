@@ -61,22 +61,22 @@
 
                 <div class ="fields">
 
-                    <div class="category-field1">
-                        <h3 class="field-label">Category Field:</h3>
+                    <div class="category-field1" id="category-field1">
+                        <h3 class="field-label">Field 1:</h3>
                         <input type="text" name="field1" id="field1" class="category-field" placeholder="Author, director, artist etc">
                     </div>
 
-                    <div class="category-field2">
-                        <h3 class="field-label">Category Field:</h3>
+                    <div class="category-field2" id="category-field2">
+                        <h3 class="field-label">Field 2:</h3>
                         <input type="text" name="field2" id="field2" class="category-field" placeholder="Author, director, artist etc">
                     </div>
 
-                    <div class="category-field3">
-                        <h3 class="field-label">Category Field:</h3>
-                        <input type="text" name="field3" id=field3" class="category-field" placeholder="Author, director, artist etc">
+                    <div class="category-field3" id="category-field3">
+                        <h3 class="field-label">Field 3:</h3>
+                        <input type="text" name="field3" id="field3" class="category-field" placeholder="Author, director, artist etc">
                     </div>
 
-                                     <button class="category-btn" id="add-field">+ Add Field</button>
+                                     <button class="category-btn" type="button" id="add-field">+ Add Field</button>
 
              </div>
 
@@ -85,12 +85,8 @@
              </div>
 
                         <div class = "category-btns">
-                <div class="checkbox-group">
-                <input type="checkbox" id="has-date" name="has-date" class="category-btn" checked>
-                 <label for="has-date"> Include date finished? </label><br>
-                </div>
-
-                 <button type="submit" class="category-btn">Save Category</button>
+                            <button id="has-date" name="has-date" class="category-btn" type="button">Include date finished</button>
+                 <button type="submit" class="save-btn" id="save-btn">Save Category</button>
 
 </div>
 </div>
@@ -98,7 +94,7 @@
 </div>
     </div>
 </main>
-    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+    <script src="{{ url_for('static', filename='custom_category.js') }}"></script>
 
 </body>
 </html>
