@@ -53,6 +53,11 @@ def search():
     return render_template('search.html')
 
 
+@app.route("/custom")
+@login_required
+def custom():
+    return render_template('custom_category.html')
+
 
 # This is the final stage of the new review process, it is called AFTER the entire form is filled out and saves the review to the database
 @app.route("/new", methods=['GET', 'POST'])

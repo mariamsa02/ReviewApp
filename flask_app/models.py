@@ -52,6 +52,10 @@ class Category(db.Model):
     # Movie, TV Show, Book etc
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
+    # for custom categories
+    fields = db.Column(db.Text, nullable=True)
+    # the custom categories will have an option to have date finished
+    has_date_finished = db.Column(db.Boolean, default=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Custom Category</title>
+    <link rel="stylesheet" href="../static/themes.css">
+    <link rel="stylesheet" href="../static/style.css">
+
+
+</head>
+<body class="{{ current_user.theme }}">
+<nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../static/images/logo.png" alt="star_logo" class="sidebar-logo">
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{{url_for('home')}}" class="nav-link">
+                    <span class="nav-text">Home Page</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sidebar-footer">
+            <li class="nav-item">
+                <!--Select used instead of buttons-->
+                <!--Ideally there will be multiple themes-->
+                <select id="theme-toggle" class="nav-link">
+                    <option value="dark-mode">Dark Mode</option>
+                    <option value="light-mode">Light Mode</option>
+                </select>
+            </li>
+            <li class="nav-item">
+                <a href="{{url_for('logout')}}" class="nav-link">
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+<main class="main-content single-sidebar">
+
+
+    <div class ="form-container">
+
+<div class="category-form">
+        <form method="POST" action="/custom">
+
+                    <div class="category-header">
+
+    <span class="category-close">
+        <a id="category-close" href="{{url_for('search')}}">&times;</a>
+    </span>
+
+            <div class="category-flex">
+
+                <h3 class="category-title">Create Custom Category</h3>
+
+                <h3 class="category-label">Category Name:</h3>
+                <input type="text" name="category-name" class="category-name">
+
+                <div class ="fields">
+
+                    <div class="category-field1">
+                        <h3 class="field-label">Category Field:</h3>
+                        <input type="text" name="field1" id="field1" class="category-field" placeholder="Author, director, artist etc">
+                    </div>
+
+                    <div class="category-field2">
+                        <h3 class="field-label">Category Field:</h3>
+                        <input type="text" name="field2" id="field2" class="category-field" placeholder="Author, director, artist etc">
+                    </div>
+
+                    <div class="category-field3">
+                        <h3 class="field-label">Category Field:</h3>
+                        <input type="text" name="field3" id=field3" class="category-field" placeholder="Author, director, artist etc">
+                    </div>
+
+                                     <button class="category-btn" id="add-field">+ Add Field</button>
+
+             </div>
+
+
+
+             </div>
+
+                        <div class = "category-btns">
+                <div class="checkbox-group">
+                <input type="checkbox" id="has-date" name="has-date" class="category-btn" checked>
+                 <label for="has-date"> Include date finished? </label><br>
+                </div>
+
+                 <button type="submit" class="category-btn">Save Category</button>
+
+</div>
+</div>
+        </form>
+</div>
+    </div>
+</main>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+
+</body>
+</html>
