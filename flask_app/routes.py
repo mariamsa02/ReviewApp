@@ -16,6 +16,8 @@ from flask_app.models import User, Review, Category
 @login_required
 def home():
 
+    categories = Category.query.filter_by(user_id=current_user.id).all()
+
     category = request.args.get('category')
     rating = request.args.get('rating')
 
@@ -26,7 +28,7 @@ def home():
         query = query.filter_by(rating=int(rating))
     reviews = query.all()
 
-    return render_template('home.html', reviews=reviews)
+    return render_template('home.html', reviews=reviews, categories=categories)
 
 
 @app.route("/api/search")
@@ -50,12 +52,37 @@ def api_search():
 @app.route("/search")
 @login_required
 def search():
-    return render_template('search.html')
+    categories = Category.query.filter_by(user_id=current_user.id).all()
+
+    return render_template('search.html', categories=categories)
 
 
 @app.route("/custom", methods=['GET', 'POST'])
 @login_required
 def custom():
+    if request.method == 'POST':
+        # Get custom category data from the form
+        name = request.form.get('category-name', '').strip()
+        field1 = request.form.get('field1', '').strip()
+        field2 = request.form.get('field2', '').strip()
+        field3 = request.form.get('field3', '').strip()
+        has_date = request.form.get('has-date-value') == 'true'
+
+        saved_category = Category(
+            name=name,
+            field1=field1,
+            field2=field2,
+            field3=field3,
+            has_date_finished=has_date,
+            user_id =current_user.id
+
+        )
+
+        db.session.add(saved_category)
+        db.session.commit()
+
+        return redirect(url_for('search'))
+
     return render_template('custom_category.html')
 
 

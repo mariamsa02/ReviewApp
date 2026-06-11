@@ -20,8 +20,6 @@
                     <span class="nav-text">Home Page</span>
                 </a>
             </li>
-        </ul>
-        <ul class="sidebar-footer">
             <li class="nav-item">
                 <!--Select used instead of buttons-->
                 <!--Ideally there will be multiple themes-->
@@ -30,7 +28,10 @@
                     <option value="light-mode">Light Mode</option>
                 </select>
             </li>
-            <li class="nav-item">
+        </ul>
+        <ul class="sidebar-footer">
+
+            <li class="nav-item" id="logout-btn">
                 <a href="{{url_for('logout')}}" class="nav-link">
                     <span class="nav-text">Logout</span>
                 </a>
@@ -61,6 +62,11 @@
                 <a href="{{url_for('custom')}}" class="sidebar-btn">
                     <span class="sidebar-text">NEW +</span>
                 </a>
+                {% for category in categories %}
+                    <button class="sidebar-btn">
+                        <span class="sidebar-text">{{ category.name }}</span>
+                    </button>
+                {% endfor %}
             </div>
         </div>
     </aside>

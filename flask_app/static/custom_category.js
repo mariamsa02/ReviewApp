@@ -26,9 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 button.addEventListener('click', function() {
-    console.log("button clicked");
-    console.log("field2 display:", field2.style.display);
-
     if (field2.style.display === "none" || field2.style.display === "") {
         field2.style.display = "block";
     } else if (field3.style.display === "none" || field3.style.display === "") {
@@ -38,4 +35,19 @@ button.addEventListener('click', function() {
 });
 
 
-    });
+const hasDateBtn = document.getElementById('has-date');
+const hasDateInput = document.getElementById('has-date-input');
+let hasDate = false;
+
+hasDateBtn.addEventListener('click', function() {
+    hasDate = !hasDate;
+    hasDateInput.value = hasDate;
+
+    if (hasDate) {
+        hasDateBtn.style.background = "var(--border-color)";
+    } else {
+        hasDateBtn.style.background = "var(--bg-overlay)";
+    }
+
+});
+});

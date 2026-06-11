@@ -19,8 +19,6 @@
                     <span class="nav-text">Home Page</span>
                 </a>
             </li>
-        </ul>
-        <ul class="sidebar-footer">
             <li class="nav-item">
                 <!--Select used instead of buttons-->
                 <!--Ideally there will be multiple themes-->
@@ -29,7 +27,10 @@
                     <option value="light-mode">Light Mode</option>
                 </select>
             </li>
-            <li class="nav-item">
+        </ul>
+        <ul class="sidebar-footer">
+
+            <li class="nav-item" id="logout-btn">
                 <a href="{{url_for('logout')}}" class="nav-link">
                     <span class="nav-text">Logout</span>
                 </a>
@@ -46,7 +47,9 @@
 <div class="category-form">
         <form method="POST" action="/custom">
 
-                    <div class="category-header">
+            <input type="hidden" id="has-date-input" name="has-date-input" value="false">
+
+            <div class="category-header">
 
     <span class="category-close">
         <a id="category-close" href="{{url_for('search')}}">&times;</a>

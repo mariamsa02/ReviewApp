@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (currentCategory === "Book" && text === "Books") btn.style.background = "var(--accent-color)";
                 else if (currentRating && text === "⭐".repeat(parseInt(currentRating))) btn.style.background = "var(--accent-color)";
 
+
         // click listener
         btn.addEventListener('click', () => {
 

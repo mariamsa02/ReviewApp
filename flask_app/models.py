@@ -53,7 +53,9 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     # for custom categories
-    fields = db.Column(db.Text, nullable=True)
+    field1 = db.Column(db.String(100), nullable=True)
+    field2 = db.Column(db.String(100), nullable=True)
+    field3 = db.Column(db.String(100), nullable=True)
     # the custom categories will have an option to have date finished
     has_date_finished = db.Column(db.Boolean, default=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
