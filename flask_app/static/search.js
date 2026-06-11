@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // element selectors
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('media-search');
-    const categoryBtns = document.querySelectorAll('.sidebar-btn');
+    const categoryBtns = document.querySelectorAll('.searchable');
     const resultsDiv = document.getElementById('search-results');
     const searchTitle = document.querySelector('.search-title');
     if (searchTitle) searchTitle.innerHTML = `Search for ${currentCategory}`;
 
 
     // set default colors etc, so they can change when selected.
-    const movieBtn = document.querySelector('.sidebar-btn');
+    const movieBtn = document.querySelector('.searchable');
     if (movieBtn) movieBtn.style.background = "var(--accent-color)";
 
     // when a category button is clicked, the results and search bar become empty
