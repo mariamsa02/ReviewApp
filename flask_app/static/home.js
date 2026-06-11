@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.sidebar-btn');
 
-    // checks button on page reload so the current button is highlighted
+    // checks button on page reload so the current button is highlighted, only relevant after a button is clicked
     const params = new URLSearchParams(window.location.search);
     const currentCategory = params.get('category');
     const currentRating = params.get('rating');
@@ -126,6 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (currentCategory === "TV" && text === "TV Shows") btn.style.background = "var(--accent-color)";
                 else if (currentCategory === "Book" && text === "Books") btn.style.background = "var(--accent-color)";
                 else if (currentRating && text === "⭐".repeat(parseInt(currentRating))) btn.style.background = "var(--accent-color)";
+                // for custom categories, text and category should be identical
+                else if (currentCategory === text) btn.style.background = "var(--accent-color)";
+
 
 
         // click listener
@@ -141,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (text === "⭐⭐⭐") window.location.href = "/home?rating=3";
             else if (text === "⭐⭐⭐⭐") window.location.href = "/home?rating=4";
             else if (text === "⭐⭐⭐⭐⭐") window.location.href = "/home?rating=5";
+
+            // for custom categories, since the text should be the same as the params in the URL
+            // TEST WITH CATEGORIES WITH SPACES!!
+            else window.location.href = `/home?category=${text}`;
 
 
 });

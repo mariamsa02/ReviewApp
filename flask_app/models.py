@@ -49,10 +49,10 @@ class Review(db.Model):
         return f"Review('{self.title}', '{self.category}')"
 
 class Category(db.Model):
-    # Movie, TV Show, Book etc
+    # for custom categories
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    # for custom categories
+    # for custom fields
     field1 = db.Column(db.String(100), nullable=True)
     field2 = db.Column(db.String(100), nullable=True)
     field3 = db.Column(db.String(100), nullable=True)
