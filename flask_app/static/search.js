@@ -26,9 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('media-search');
     const categoryBtns = document.querySelectorAll('.searchable');
+    const customBtns = document.querySelectorAll('.custom');
+
     const resultsDiv = document.getElementById('search-results');
     const searchTitle = document.querySelector('.search-title');
     if (searchTitle) searchTitle.innerHTML = `Search for ${currentCategory}`;
+
+    customBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                window.location.href = `/custom-review/${id}`;
+            });
+        });
+
+
 
 
     // set default colors etc, so they can change when selected.

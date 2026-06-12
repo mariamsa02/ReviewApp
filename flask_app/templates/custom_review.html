@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Review</title>
+    <link rel="stylesheet" href="../static/themes.css">
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body class="{{ current_user.theme }}">
+<nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../static/images/logo.png" alt="star_logo" class="sidebar-logo">
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{{url_for('home')}}" class="nav-link">
+                    <span class="nav-text">Home Page</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <!--Select used instead of buttons-->
+                <!--Ideally there will be multiple themes-->
+                <select id="theme-toggle" class="nav-link">
+                    <option value="dark-mode">Dark Mode</option>
+                    <option value="light-mode">Light Mode</option>
+                </select>
+            </li>
+        </ul>
+        <ul class="sidebar-footer">
+
+            <li class="nav-item" id="logout-btn">
+                <a href="{{url_for('logout')}}" class="nav-link">
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+<main class="main-content single-sidebar">
+
+    <div class ="form-container">
+
+<div class="review-form">
+        <form method="POST" action="/new">
+
+        <div class="review-header">
+            <input type="text" name="title" placeholder="Title" class="title-input">
+            <h3 class="category-name">{{category.name}}</h3>
+    <span class="review-close">
+        <a id="review-close" href="{{url_for('search')}}">&times;</a>
+    </span>
+
+            <div class="media-flex">
+               <!-- Left Column: Poster/Cover, Rating, Dates -->
+                <div class="media-left">
+                    <!--image-->
+                    <label class="image-label">Image URL:</label>
+                    <input type="text" class="image_url" name="image-url" placeholder="https://example.com/image.jpg">
+
+                    {% if category.field1 %}
+                    <label>{{ category.field1 }}:</label>
+                    <input type="text" name="{{ category.field1 }}">
+                    {% endif %}
+                    {% if category.field2 %}
+                        <label>{{ category.field2 }}:</label>
+                        <input type="text" name="{{ category.field1 }}">
+                    {% endif %}
+                    {% if category.field3 %}
+                        <label>{{ category.field3 }}:</label>
+                        <input type="text" name="{{ category.field1 }}">
+                    {% endif %}
+
+
+
+                    <div class="rating-dates">
+                        <label class="left-labels">Rating:</label>
+                         <select id="rating" name="rating" required>
+                            <option value="1">★☆☆☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="5">★★★★★</option>
+                         </select>
+
+                        {% if category.has_date_finished %}
+
+                        <label class="left-labels">Finish Date:</label>
+                        <input type="date" id="date_finished" name="date_finished" placeholder="mm/dd/yyyy"/>
+                    {% endif %}
+
+                        <!--Test-->
+                        <h3>{{category.has_date_finished}}</h3>
+
+
+                    </div>
+                </div>
+
+                <!-- Right Column: Review, Tags -->
+                <div class="media-right">
+                    <h3 class="review-label">Review:</h3>
+                    <textarea id="review-text" name="review_text"></textarea>
+
+                    <p class="tags-label">Tags (comma separated):</p>
+                    <input type="text" class="tags-input" id="tags-input" placeholder="e.g. fantasy, drama" />
+
+                </div>
+            </div>
+
+             <div class = "review-btns">
+                        <button type="submit" class="review-btn">Save Review</button>
+                    </div>
+
+        </div>
+            </form>
+
+
+</div>
+    </div>
+
+</main>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+</body>
+</html>

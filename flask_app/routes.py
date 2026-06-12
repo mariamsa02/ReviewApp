@@ -86,6 +86,14 @@ def custom():
     return render_template('custom_category.html')
 
 
+@app.route("/custom-review/<int:category_id>", methods=['GET', 'POST'])
+@login_required
+def save_custom_review(category_id):
+    category = Category.query.get_or_404(category_id)
+    return render_template('custom_review.html', category=category)
+
+
+
 # This is the final stage of the new review process, it is called AFTER the entire form is filled out and saves the review to the database
 @app.route("/new", methods=['GET', 'POST'])
 @login_required

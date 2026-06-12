@@ -59,12 +59,12 @@
             </div>
             <div class="sidebar-group">
                 <h4 class="sidebar-group-title">Custom Categories</h4>
-                <a href="{{url_for('custom')}}" class="sidebar-btn">
+                <a href="{{url_for('custom')}}" class="sidebar-btn custom">
                     <span class="sidebar-text">NEW +</span>
                 </a>
                 {% for category in categories %}
-                    <button class="sidebar-btn">
-                        <span class="sidebar-text">{{ category.name }}</span>
+                <button class="sidebar-btn custom" data-id="{{ category.id }}">
+                    <span class="sidebar-text">{{ category.name }}</span>
                     </button>
                 {% endfor %}
             </div>
