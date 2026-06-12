@@ -45,8 +45,13 @@ hasDateBtn.addEventListener('click', function() {
 
     if (hasDate) {
         hasDateBtn.style.background = "var(--border-color)";
+                // TESTING
+                console.log(hasDate)
+
     } else {
         hasDateBtn.style.background = "var(--bg-overlay)";
+        // TESTING
+        console.log(hasDate)
     }
 
 });

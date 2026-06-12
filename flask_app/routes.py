@@ -66,7 +66,7 @@ def custom():
         field1 = request.form.get('field1', '').strip()
         field2 = request.form.get('field2', '').strip()
         field3 = request.form.get('field3', '').strip()
-        has_date = request.form.get('has-date-value') == 'true'
+        has_date = request.form.get('has-date')
 
         saved_category = Category(
             name=name,
