@@ -268,7 +268,10 @@ cursor: pointer;
     cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s;
     overflow: hidden;
-    display: block;
+    /*display: block;*/
+    display: flex;
+    flex-direction: column;
+
 }
 
 .review:hover {
@@ -318,6 +321,8 @@ cursor: pointer;
     gap: 8px;
     margin-bottom: 8px;
     font-size: 0.8rem;
+    margin-top: auto;
+
 
 }
 
@@ -704,17 +709,6 @@ cursor: pointer;
     flex: 2;
   }
 
-  #review-text {
-    width: 80%;
-    height: 350px;
-
-  }
-
-
-  #tags-input {
-    width: 60%;
-  }
-
 
 .review-form {
     text-align: center;
@@ -730,12 +724,6 @@ cursor: pointer;
 
 .title {
     font-size: 30px;
-}
-
-
-.tags-label {
-    font-size: 14px;
-    margin-top: 10px;
 }
 
 
@@ -762,6 +750,8 @@ cursor: pointer;
 }
 
 #review-text {
+  width: 80%;
+  height: 350px;
    font-family: var(--font-body);
    font-size: 0.9rem;
    font-weight: 500;
@@ -773,6 +763,11 @@ cursor: pointer;
 
   }
 
+.tags-label {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 .tags-input {
     width: 60%;
     text-align: left;
@@ -783,6 +778,49 @@ cursor: pointer;
 
 
   }
+
+/* FOR CUSTOM CATEGORY REVIEWS*/
+.fields-input {
+    width: 60%;
+    text-align: left;
+    padding: 2px 5px;
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.image-input {
+    width: 60%;
+    height: 100px
+    text-align: left;
+    padding: 2px 5px;
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 5px;
+       resize: none;
+
+}
+
+.custom-media-left {
+    margin-top: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.custom-labels {
+display: block;
+margin-top: 10px;
+}
+
+.show-category {
+    font-family: var(--font-main);
+    display: flex;
+}
 
 /* FOR EDITING */
 .title-input {

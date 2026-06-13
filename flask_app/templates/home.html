@@ -99,10 +99,12 @@
                     <div id="review-container">
                         {% for review in reviews %}
                         <div class="review"
-                             onclick='openModal({{ review.title|tojson }}, {{ review.image_url|tojson }}, {{ review.content|tojson }}, {{ review.rating|tojson }}, {{ (review.date_finished or "")|tojson }}, {{ review.id }})'>
+                             onclick='openModal({{ review.title|tojson }}, {{ (review.image_url or "")|tojson }}, {{ review.content|tojson }}, {{ review.rating|tojson }}, {{ (review.date_finished or "")|tojson }}, {{ review.id }}, {{ review.custom_data|tojson }}, {{review.category|tojson }})'>
                             <h3>{{ review.title}}</h3>
                             <div class="review-content">
+                                {% if review.image_url != "" %}
                                 <img class="review-image" src="{{ review.image_url }}" alt="{{ review.title }}">
+                                {% endif %}
                                 <p>
                                     {{ review.content[:180] }}
                                     {% if review.content|length > 180 %}...{% endif %}

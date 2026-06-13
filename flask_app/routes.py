@@ -66,7 +66,7 @@ def custom():
         field1 = request.form.get('field1', '').strip()
         field2 = request.form.get('field2', '').strip()
         field3 = request.form.get('field3', '').strip()
-        has_date = request.form.get('has-date')
+        has_date = request.form.get('has-date-input') == 'true'
 
         saved_category = Category(
             name=name,
@@ -90,6 +90,46 @@ def custom():
 @login_required
 def save_custom_review(category_id):
     category = Category.query.get_or_404(category_id)
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        category_name = category.name
+        content = request.form.get('review_text')
+        rating = request.form.get('rating', 1)
+        image_url = request.form.get('image_url')
+        if request.form.get('date_finished'):
+            date_finished = request.form.get('date_finished')
+        else:
+            date_finished = ""
+
+        custom_fields = {}
+        if category.field1:
+            custom_fields[category.field1] = request.form.get(category.field1, "")
+        if category.field2:
+            custom_fields[category.field2] = request.form.get(category.field2, "")
+        if category.field3:
+            custom_fields[category.field3] = request.form.get(category.field3, "")
+
+        saved_review = Review(
+            title=title,
+            category=category_name,
+            content=content,
+            rating=int(rating),
+            image_url=image_url,
+            date_finished = date_finished,
+            # Save as a string
+            custom_data=json.dumps(custom_fields),
+            # Connects to the logged-in user
+            author=current_user
+        )
+
+        # save and commit
+        db.session.add(saved_review)
+        db.session.commit()
+
+        # flash('Review created!', 'success')
+        return redirect(url_for('home'))
+
     return render_template('custom_review.html', category=category)
 
 

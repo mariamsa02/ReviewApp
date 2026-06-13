@@ -1,7 +1,7 @@
 // flask_app/static/home.js
 
 // This function recieves the title, image, content, rating, and date_posted from when it is called in the HTML
-function openModal(title, image, content, rating, date_finished, id) {
+function openModal(title, image, content, rating, date_finished, id, custom_data, category) {
 
     // It looks inside the HTML for an id review-modal
     const modal = document.getElementById("review-modal");
@@ -15,7 +15,12 @@ function openModal(title, image, content, rating, date_finished, id) {
 
     // querySelector finds the matching class in the HTML code and the inside is set as what was passed in
     modal.querySelector(".modal-title").innerText = title;
+    if (image) {
     modal.querySelector(".modal-image").src = image;
+    modal.querySelector(".modal-image").style.display = "block";
+    } else {
+        modal.querySelector(".modal-image").style.display = "none";
+    }
     modal.querySelector(".modal-review-content").innerText = content;
 
 
@@ -25,6 +30,31 @@ function openModal(title, image, content, rating, date_finished, id) {
     const stars = "★".repeat(parseInt(rating)) + "☆".repeat(5 - parseInt(rating));
     //querySelector finds the modal metadata
     const metadata = modal.querySelector(".modal-metadata");
+
+    // for custom category reviews:
+    if (custom_data) {
+        customFields = JSON.parse(custom_data);
+    } else {
+        customFields = {};
+    }
+
+    let customHTML = '';
+    for (const [key, value] of Object.entries(customFields)) {
+        if (value) {
+            customHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+        }
+    }
+
+// for dates
+let dateHTML = '';
+if (date_finished) {
+dateHTML += `<p><strong>Date Finished:</strong>${date}</p>`;
+}
+
+
+
+
+
     // Use the innerHTML to edit the metadata. The inner html will appear inside that specific div. stars and date go here
     metadata.innerHTML = `<div>
     <p>
@@ -35,11 +65,19 @@ function openModal(title, image, content, rating, date_finished, id) {
     </p>
     </div>
     <div>
+    ${dateHTML}
+    </div>
+    <div>
     <p>
-    <strong>Date Posted:</strong>
-    ${date}
+    <strong>Category:</strong>
+    ${category}
     </p>
-    </div>`;
+    </div>
+    <div>
+    ${customHTML}
+    </div>
+
+    `;
 
     // classList.add("show") means activate the modal.show in CSS?
     modal.style.display = "block";

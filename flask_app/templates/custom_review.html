@@ -43,33 +43,34 @@
     <div class ="form-container">
 
 <div class="review-form">
-        <form method="POST" action="/new">
+        <form method="POST" action="/custom-review/{{ category.id }}">
 
         <div class="review-header">
-            <input type="text" name="title" placeholder="Title" class="title-input">
-            <h3 class="category-name">{{category.name}}</h3>
+            <input type="text" name="title" placeholder="Title" class="title-input" required>
     <span class="review-close">
         <a id="review-close" href="{{url_for('search')}}">&times;</a>
     </span>
 
+            <h3 class="show-category">{{category.name}}</h3>
+
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->
-                <div class="media-left">
+                <div class="custom-media-left">
                     <!--image-->
-                    <label class="image-label">Image URL:</label>
-                    <input type="text" class="image_url" name="image-url" placeholder="https://example.com/image.jpg">
+                    <label class="custom-labels">Image URL:</label>
+                    <textarea class="image-input" name="image_url" placeholder="https://example.com/image.jpg"></textarea>
 
                     {% if category.field1 %}
-                    <label>{{ category.field1 }}:</label>
-                    <input type="text" name="{{ category.field1 }}">
+                        <label class="custom-labels">{{ category.field1 }}:</label>
+                        <input type="text" name="{{ category.field1 }}" class="fields-input" required>
                     {% endif %}
                     {% if category.field2 %}
-                        <label>{{ category.field2 }}:</label>
-                        <input type="text" name="{{ category.field1 }}">
+                        <label class="custom-labels">{{ category.field2 }}:</label>
+                        <input type="text" name="{{ category.field2 }}" class="fields-input" required>
                     {% endif %}
                     {% if category.field3 %}
-                        <label>{{ category.field3 }}:</label>
-                        <input type="text" name="{{ category.field1 }}">
+                        <label class="custom-labels">{{ category.field3 }}:</label>
+                        <input type="text" name="{{ category.field3 }}" class="fields-input" required>
                     {% endif %}
 
 
@@ -90,9 +91,6 @@
                         <input type="date" id="date_finished" name="date_finished" placeholder="mm/dd/yyyy"/>
                     {% endif %}
 
-                        <!--Test-->
-                        <h3>{{category.has_date_finished}}</h3>
-
 
                     </div>
                 </div>
@@ -100,7 +98,7 @@
                 <!-- Right Column: Review, Tags -->
                 <div class="media-right">
                     <h3 class="review-label">Review:</h3>
-                    <textarea id="review-text" name="review_text"></textarea>
+                    <textarea id="review-text" name="review_text" required></textarea>
 
                     <p class="tags-label">Tags (comma separated):</p>
                     <input type="text" class="tags-input" id="tags-input" placeholder="e.g. fantasy, drama" />
