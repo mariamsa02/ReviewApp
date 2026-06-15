@@ -1,5 +1,7 @@
-# to do: update the look of buttons etc on review forms, fix formatting
-# to do: custom category/review routes
+# to do: ability to edit custom reviews
+# to do: ability to delete custom reviews
+# to do: display author for books, director for movie? and year published/released
+# to do: add date posted
 
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
