@@ -1,6 +1,6 @@
 # to do: ability to edit custom reviews
 # to do: display author for books, director for movie? and year published/released
-# to do: add date posted
+# to do: search bar for reviews
 
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
@@ -112,6 +112,7 @@ def save_custom_review(category_id):
         content = request.form.get('review_text')
         rating = request.form.get('rating', 1)
         image_url = request.form.get('image_url')
+        tags_input = request.form.get('tags_input')
         if request.form.get('date_finished'):
             date_finished = request.form.get('date_finished')
         else:
@@ -134,6 +135,7 @@ def save_custom_review(category_id):
             date_finished = date_finished,
             # Save as a string
             custom_data=json.dumps(custom_fields),
+            tags_input=tags_input,
             # Connects to the logged-in user
             author=current_user
         )
@@ -161,12 +163,13 @@ def save_review():
         rating = request.form.get('rating', 1)
         image_url = request.form.get('image_url')
         date_finished = request.form.get('date_finished')
+        tags_input = request.form.get('tags_input')
 
 
     # custom fields like author etc., store as json string
         extra_fields = {}
         for key in request.form:
-            if key not in ['title', 'category', 'review_text', 'rating', 'image_url', 'date_finished']:
+            if key not in ['title', 'category', 'review_text', 'rating', 'image_url', 'date_finished', 'tags_input']:
                 extra_fields[key] = request.form.get(key)
 
         # create database object
@@ -179,6 +182,7 @@ def save_review():
             date_finished = date_finished,
             # Save as a string
             custom_data=json.dumps(extra_fields),
+            tags=tags_input,
             # Connects to the logged-in user
             author=current_user
         )

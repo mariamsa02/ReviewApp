@@ -1,7 +1,7 @@
 // flask_app/static/home.js
 
 // This function recieves the title, image, content, rating, and date_posted from when it is called in the HTML
-function openModal(title, image, content, rating, date_finished, id, custom_data, category, date_posted) {
+function openModal(title, image, content, rating, date_finished, id, custom_data, category, tags, date_posted) {
 
     // It looks inside the HTML for an id review-modal
     const modal = document.getElementById("review-modal");
@@ -62,6 +62,9 @@ dateHTML += `<p><strong>Date Finished: </strong>${dateFinished}</p>`;
     <strong>Rating:</strong>
     <span class="modal-stars">${stars}</span>
     </p>
+    </div>
+    <div class="tags">
+    <p><strong>Tags: </strong>${tags}</p>
     </div>
     <div>
     ${dateHTML}
