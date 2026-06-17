@@ -1,7 +1,7 @@
 // flask_app/static/home.js
 
 // This function recieves the title, image, content, rating, and date_posted from when it is called in the HTML
-function openModal(title, image, content, rating, date_finished, id, custom_data, category) {
+function openModal(title, image, content, rating, date_finished, id, custom_data, category, date_posted) {
 
     // It looks inside the HTML for an id review-modal
     const modal = document.getElementById("review-modal");
@@ -26,7 +26,8 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
 
     // Metadata
     // assign a const for date and ratings
-    const date = date_finished
+    const dateFinished = date_finished
+    const datePosted = date_posted
     const stars = "★".repeat(parseInt(rating)) + "☆".repeat(5 - parseInt(rating));
     //querySelector finds the modal metadata
     const metadata = modal.querySelector(".modal-metadata");
@@ -47,8 +48,8 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
 
 // for dates
 let dateHTML = '';
-if (date_finished) {
-dateHTML += `<p><strong>Date Finished:</strong>${date}</p>`;
+if (dateFinished) {
+dateHTML += `<p><strong>Date Finished: </strong>${dateFinished}</p>`;
 }
 
 
@@ -59,19 +60,17 @@ dateHTML += `<p><strong>Date Finished:</strong>${date}</p>`;
     metadata.innerHTML = `<div>
     <p>
     <strong>Rating:</strong>
-    <span class="modal-stars">
-    ${stars}
-    </span>
+    <span class="modal-stars">${stars}</span>
     </p>
     </div>
     <div>
     ${dateHTML}
     </div>
     <div>
-    <p>
-    <strong>Category:</strong>
-    ${category}
-    </p>
+    <p><strong>Date Posted: </strong>${datePosted}</p>
+    </div>
+    <div>
+    <p><strong>Category: </strong>${category}</p>
     </div>
     <div>
     ${customHTML}
