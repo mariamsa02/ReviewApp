@@ -1,5 +1,4 @@
 # to do: ability to edit custom reviews
-# to do: ability to delete custom reviews
 # to do: display author for books, director for movie? and year published/released
 # to do: add date posted
 
@@ -17,7 +16,6 @@ from flask_app.models import User, Review, Category
 @app.route("/home")
 @login_required
 def home():
-
     categories = Category.query.filter_by(user_id=current_user.id).all()
 
     category = request.args.get('category')
@@ -86,6 +84,21 @@ def custom():
         return redirect(url_for('search'))
 
     return render_template('custom_category.html')
+
+
+@app.route("/delete_category/<int:category_id>", methods=['POST'])
+@login_required
+def delete_category(category_id):
+    category = Category.query.get_or_404(category_id)
+    category_name = category.name
+
+    if category.user_id == current_user.id:
+        # delete reviews first
+        Review.query.filter_by(user_id=current_user.id, category=category_name).delete()
+        db.session.delete(category)
+        db.session.commit()
+
+    return redirect(url_for('home'))
 
 
 @app.route("/custom-review/<int:category_id>", methods=['GET', 'POST'])

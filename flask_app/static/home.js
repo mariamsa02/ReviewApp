@@ -193,3 +193,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
+
+// add ability to delete custom catgegories
+document.addEventListener('DOMContentLoaded', () => {
+// sidebar buttons for categories
+const categoriesGroup = document.querySelector('.categories-group');
+
+// hidden form at the end of html page
+const deleteCategoryForm = document.getElementById("delete-category-form");
+
+// right click a custom category butten, suppress the default event, and delete the category
+categoriesGroup.addEventListener('contextmenu', function(event) {
+const categoryBtn = event.target.closest('.custom-btn');
+
+
+if (categoryBtn) {
+    event.preventDefault();
+    const categoryId = categoryBtn.dataset.categoryId;
+    const categoryName = categoryBtn.dataset.categoryName;
+    event.preventDefault();
+    if (confirm(`Are you sure you want to delete the ${categoryName} category?`)) {
+        deleteCategoryForm.action = `/delete_category/${categoryId}`;
+        deleteCategoryForm.submit();
+    }
+
+};
+
+});
+
+});
