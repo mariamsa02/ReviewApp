@@ -63,9 +63,6 @@ dateHTML += `<p><strong>Date Finished: </strong>${dateFinished}</p>`;
     <span class="modal-stars">${stars}</span>
     </p>
     </div>
-    <div class="tags">
-    <p><strong>Tags: </strong>${tags}</p>
-    </div>
     <div>
     ${dateHTML}
     </div>
@@ -78,7 +75,12 @@ dateHTML += `<p><strong>Date Finished: </strong>${dateFinished}</p>`;
     <div>
     ${customHTML}
     </div>
-
+    <div class="modal-tags">
+    <p>
+    <strong>Tags: </strong>
+    <span class="tags-content">${tags}</span>
+    </p>
+    </div>
     `;
 
     // classList.add("show") means activate the modal.show in CSS?
