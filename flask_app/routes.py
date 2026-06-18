@@ -135,7 +135,7 @@ def save_custom_review(category_id):
             date_finished = date_finished,
             # Save as a string
             custom_data=json.dumps(custom_fields),
-            tags_input=tags_input,
+            tags=tags_input,
             # Connects to the logged-in user
             author=current_user
         )
