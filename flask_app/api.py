@@ -5,7 +5,6 @@ load_dotenv()
 
 # Get keys from environment
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
-GOOGLE_BOOKS_API_KEY = os.environ.get('GOOGLE_BOOKS_API_KEY')
 
 def query_api(category, query):
     if not query:
@@ -13,11 +12,10 @@ def query_api(category, query):
 
     # set up for API
     if category == "Book":
-        url = "https://www.googleapis.com/books/v1/volumes"
+        url = "https://openlibrary.org/search.json"
         params = {
-            "q": query,
-            "maxResults": 10,
-            "key": GOOGLE_BOOKS_API_KEY
+            "q": query.capitalize(),
+            "limit": 20,
         }
     else:
         # for TMDB
@@ -31,17 +29,18 @@ def query_api(category, query):
 
     # Make the request
     try:
+        headers = {"User-Agent": "ReviewApp (mariamsahmed02@gmail.com)"}
         # use params to clean url
-        response = requests.get(url, params=params, timeout=5)
+        response = requests.get(url, params=params, headers=headers, timeout=5)
         response.raise_for_status()
         data = response.json()
     except Exception as e:
         print(f"Error calling API: {e}")
         return []
 
-    # Google Books uses items and TMDB uses results
+    # Open Library uses docs and TMDB uses results
     if category == "Book":
-        return data.get("items", [])
+        return data.get("docs", [])
     else:
         return data.get("results", [])
 

@@ -82,7 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                displayResults(data, currentCategory);
+                if (currentCategory === "Book") {
+                displayBookResults(data, currentCategory);
+                }
+                else {
+                displayMediaResults(data, currentCategory)
+                }
             } catch (error) {
                 console.error("Search error:", error);
             }
@@ -98,8 +103,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }); // closes DOMContentLoaded
 
-// display the search results
-function displayResults(data, category) {
+// Display book search results
+function displayBookResults(data, category) {
+    const resultsDiv = document.getElementById('search-results');
+    resultsDiv.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        resultsDiv.innerHTML = "<p>No results found.</p>";
+        return;
+    }
+
+        data.forEach(item => {
+        let title, author, published, imgPath;
+            title = item.title;
+            author = item.author_name ? item.author_name[0] : 'Unknown';
+            published = item.first_publish_year;
+            imgPath = item.cover_i ? `https://covers.openlibrary.org/b/id/${item.cover_i}-L.jpg` : '';
+
+
+        const card = document.createElement('div');
+        card.className = "results-card";
+        card.innerHTML = `
+        <img src="${imgPath}" alt="${title}" class="result-img">
+         <div class="result-info">
+                <h3 class="result-title">${title}</h3>
+                <div class="results-meta">
+                <p class="result-author">${author}</p>
+                <p class="result-published">${published}</p>
+                </div>
+            </div>
+
+        `;
+
+        card.querySelector('.result-img').addEventListener('click', () => {
+                selectMedia(title, imgPath, category);
+        });
+
+        resultsDiv.appendChild(card);
+    });
+}
+
+
+
+
+// display movie/tv search results
+function displayMediaResults(data, category) {
     const resultsDiv = document.getElementById('search-results');
     resultsDiv.innerHTML = "";
 
@@ -109,13 +157,14 @@ function displayResults(data, category) {
     }
 
     data.forEach(item => {
-        let title, imgPath;
-        if (category === "Book") {
-            title = item.volumeInfo.title;
-            imgPath = item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : '';
-        } else {
-            title = item.title || item.name;
-            imgPath = item.poster_path ? `https://image.tmdb.org/t/p/w200${item.poster_path}` : '';
+        let title, imgPath, release;
+        title = item.title || item.name;
+        imgPath = item.poster_path ? `https://image.tmdb.org/t/p/w200${item.poster_path}` : '';
+        if (category === "Movie") {
+        release = item.release_date ? item.release_date.split('-')[0] : '';
+        }
+        else {
+            release = item.first_air_date ? item.first_air_date.split('-')[0] : '';
         }
 
         const card = document.createElement('div');
@@ -123,15 +172,16 @@ function displayResults(data, category) {
         card.innerHTML = `
         <img src="${imgPath}" alt="${title}" class="result-img">
          <div class="result-info">
-                <h3 class="result-title">${title}</h3><br/>
+                <h3 class="result-title">${title}</h3>
+                <div class="results-meta">
+                <p class="result-release">${release}</p>
+                </div>
             </div>
 
         `;
 
         card.querySelector('.result-img').addEventListener('click', () => {
-            if (typeof selectMedia === "function") {
                 selectMedia(title, imgPath, category);
-            }
         });
 
         resultsDiv.appendChild(card);

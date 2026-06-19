@@ -619,6 +619,12 @@ font-size: 1.5rem;
     color: var(--accent-color);
 }
 
+.results-meta {
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+
 /*Overpower search background*/
 .media-search:-webkit-autofill,
 .media-search:-webkit-autofill:hover,
