@@ -135,8 +135,11 @@ function displayBookResults(data, category) {
 
         `;
 
+        // testing
+        const bookMeta = [author, published]
+
         card.querySelector('.result-img').addEventListener('click', () => {
-                selectMedia(title, imgPath, category);
+                selectMedia(title, imgPath, category, bookMeta);
         });
 
         resultsDiv.appendChild(card);
@@ -180,8 +183,10 @@ function displayMediaResults(data, category) {
 
         `;
 
+        const mediaMeta = [release]
+
         card.querySelector('.result-img').addEventListener('click', () => {
-                selectMedia(title, imgPath, category);
+                selectMedia(title, imgPath, category, mediaMeta);
         });
 
         resultsDiv.appendChild(card);
@@ -192,11 +197,12 @@ function displayMediaResults(data, category) {
 let selectedMedia = {};
 
 // select media/selecting a poster
-function selectMedia(title, imgPath, category) {
+function selectMedia(title, imgPath, category, meta) {
     const params = new URLSearchParams({
         title: title,
         image_url: imgPath,
-        category: category
+        category: category,
+        meta: meta,
     });
     window.location.href = `/new?${params}`;
 }
