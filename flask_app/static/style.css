@@ -551,6 +551,10 @@ font-size: 18px;
     padding: 8px 10px;
 }
 
+.search-title {
+    margin-bottom: 10px;
+}
+
 .search-container input {
     flex: 1;
     background: transparent;
@@ -559,7 +563,8 @@ font-size: 18px;
     padding: 20px;
     font-size: 1rem;
     color: var(--text-primary);
-    font-family: var(--font-main);
+    font-family: var(--font-body);
+    font-weight: bold;
 
 }
 
@@ -577,6 +582,13 @@ font-size: 18px;
     flex-shrink: 0;
     color: var(--text-primary);
 }
+
+#loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
 
 /* SEARCH RESULTS */
 
@@ -670,6 +682,11 @@ font-size: 1.5rem;
 
 .review-label {
     font-size: 16px;
+}
+
+.review-meta {
+    font-family: var(--font-body);
+    font-weight: bolder;
 }
 
 

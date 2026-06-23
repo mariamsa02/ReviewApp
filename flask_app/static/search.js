@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
     // set default colors etc, so they can change when selected.
     const movieBtn = document.querySelector('.searchable');
     if (movieBtn) movieBtn.style.background = "var(--accent-color)";
@@ -79,7 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // URL for all categories
             const url = `/api/search?q=${encodeURIComponent(query)}&category=${currentCategory}`;
+            // LOADER
+            const loader = loadType();
+            loader.style.display = 'block';
+
             try {
+
                 const response = await fetch(url);
                 const data = await response.json();
                 if (currentCategory === "Book") {
@@ -90,6 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error("Search error:", error);
+            }
+            finally {
+                loader.style.display = 'none';
             }
         });
     }
@@ -135,7 +142,6 @@ function displayBookResults(data, category) {
 
         `;
 
-        // testing
         const bookMeta = [author, published]
 
         card.querySelector('.result-img').addEventListener('click', () => {
@@ -184,7 +190,6 @@ function displayMediaResults(data, category) {
         `;
 
         const mediaMeta = [release]
-
         card.querySelector('.result-img').addEventListener('click', () => {
                 selectMedia(title, imgPath, category, mediaMeta);
         });
@@ -205,4 +210,16 @@ function selectMedia(title, imgPath, category, meta) {
         meta: meta,
     });
     window.location.href = `/new?${params}`;
+}
+
+
+var i = 0;
+var speed = 50;
+var text = 'Loading...';
+function loadType(text) {
+  if (i < text.length) {
+    document.getElementById("loading").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(loadType, speed);
+  }
 }

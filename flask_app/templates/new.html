@@ -47,6 +47,8 @@
         <input type="hidden" name="title" value="{{ title }}">
         <input type="hidden" name="image_url" value="{{ image_url }}">
         <input type="hidden" name="category" value="{{ category }}">
+        <input type="hidden" name="meta" value="{{ meta }}">
+
 
         <div class="review-header">
 
@@ -54,6 +56,10 @@
     <span class="review-close">
         <a id="review-close" href="{{url_for('search')}}">&times;</a>
     </span>
+
+    <div class="review-meta">
+  <p>{{ meta.replace(",", " • ") }}</p>
+    </div>
 
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->

@@ -197,8 +197,9 @@ def save_review():
     return render_template('new.html',
                            title=request.args.get('title'),
                            image_url=request.args.get('image_url'),
-                           category=request.args.get('category')
-                           )
+                           category=request.args.get('category'),
+                           meta = request.args.get('meta')
+    )
 
 
 @app.route("/delete/<int:review_id>", methods=['POST'])
