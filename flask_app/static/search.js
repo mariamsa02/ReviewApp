@@ -78,9 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // URL for all categories
             const url = `/api/search?q=${encodeURIComponent(query)}&category=${currentCategory}`;
+
             // LOADER
-            const loader = loadType();
+            loader = document.getElementById("loading");
             loader.style.display = 'block';
+            startLoader();
 
             try {
 
@@ -213,13 +215,24 @@ function selectMedia(title, imgPath, category, meta) {
 }
 
 
+// Typing effect for loading screen
 var i = 0;
-var speed = 50;
-var text = 'Loading...';
-function loadType(text) {
-  if (i < text.length) {
-    document.getElementById("loading").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(loadType, speed);
-  }
+var text = 'Loading.....';
+var speed = 150;
+var loaderTimer = null;
+
+function startLoader() {
+    clearTimeout(loaderTimer);
+    i = 0;
+    document.getElementById("loading").innerHTML = "";
+    document.getElementById("search-results").innerHTML = "";
+    loaderTimer = setTimeout(loadType, 300)
+}
+
+function loadType() {
+    if (i < text.length) {
+        document.getElementById("loading").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(loadType, speed);
+    }
 }
