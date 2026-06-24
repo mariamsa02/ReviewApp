@@ -1,7 +1,7 @@
 // flask_app/static/home.js
 
 // This function recieves the title, image, content, rating, and date_posted from when it is called in the HTML
-function openModal(title, image, content, rating, date_finished, id, custom_data, category, tags, date_posted) {
+function openModal(title, image, content, rating, date_finished, id, custom_data, category, tags_input, date_posted) {
 
     // It looks inside the HTML for an id review-modal
     const modal = document.getElementById("review-modal");
@@ -26,9 +26,12 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
 
     // Metadata
     // assign a const for date and ratings
-    const dateFinished = date_finished
-    const datePosted = date_posted
+    const dateFinished = date_finished;
+    const datePosted = date_posted;
     const stars = "★".repeat(parseInt(rating)) + "☆".repeat(5 - parseInt(rating));
+    const tags = tags_input;
+    const tagsArray = tags.split(",");
+
     //querySelector finds the modal metadata
     const metadata = modal.querySelector(".modal-metadata");
 
@@ -42,7 +45,13 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
     let customHTML = '';
     for (const [key, value] of Object.entries(customFields)) {
         if (value) {
+
+        if (key == "meta") {
+        customHTML += `<p>${value}</p>`
+        }
+        else {
             customHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+        }
         }
     }
 
@@ -52,8 +61,14 @@ if (dateFinished) {
 dateHTML += `<p><strong>Date Finished: </strong>${dateFinished}</p>`;
 }
 
-
-
+// for tags
+let tagsHTML = '';
+let btnClass = "tag-btn";
+if (tags) {
+for (const tag of tagsArray) {
+tagsHTML += `<button class=${btnClass} id=${tag}>${tag}</button>`
+}
+}
 
 
     // Use the innerHTML to edit the metadata. The inner html will appear inside that specific div. stars and date go here
@@ -77,8 +92,7 @@ dateHTML += `<p><strong>Date Finished: </strong>${dateFinished}</p>`;
     </div>
     <div class="modal-tags">
     <p>
-    <strong>Tags: </strong>
-    <span class="tags-content">${tags}</span>
+    <span class="tags-content">${tagsHTML}</span>
     </p>
     </div>
     `;

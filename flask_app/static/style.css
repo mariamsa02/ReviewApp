@@ -260,6 +260,7 @@ cursor: pointer;
     margin: 0 auto;
 }
 
+
 /* REVIEW CARDS */
 
 .review {
@@ -365,7 +366,7 @@ cursor: pointer;
     position: relative;
     background-color: var(--bg-card);
     margin: 5% auto;
-    padding: 40px;
+    padding: 20px 40px;
     border: 1px solid var(--accent-color);
     width: 90%;
     max-width: 800px;
@@ -416,6 +417,7 @@ cursor: pointer;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
     color: var(--accent-color);
+    font-size: 15px;
 }
 
 .modal-stars {
@@ -431,12 +433,24 @@ cursor: pointer;
     font-family: var(--font-body);
     padding-top: 10px;
     color: var(--text-secondary);
+
+}
+
+.tag-btn {
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.tag-btn:hover {
+    background: var(--accent-color);
+    color: var(--text-white);
 }
 
 .tags-content {
-    font-style: italic;
-    }
-
+    display: flex;
+    gap: 12px;
+}
 .modal-content::-webkit-scrollbar { width: 8px; }
 .modal-content::-webkit-scrollbar-track { background: var(--bg-main); }
 .modal-content::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 4px; }
