@@ -102,7 +102,7 @@
                         {% for review in reviews %}
                         <div class="review"
                              onclick='openModal({{ review.title|tojson }}, {{ (review.image_url or "")|tojson }}, {{ review.content|tojson }}, {{ review.rating|tojson }}, {{ (review.date_finished or "")|tojson }}, {{ review.id }}, {{ review.custom_data|tojson }}, {{review.category|tojson }}, {{review.tags|tojson}}, {{review.date_posted.strftime('%Y-%m-%d')|tojson}})'>
-                            <h3>{{ review.title}}</h3>
+                        <h3>{{ review.title}}</h3>
                             <div class="review-content">
                                 {% if review.image_url != "" %}
                                 <img class="review-image" src="{{ review.image_url }}" alt="{{ review.title }}">
@@ -147,7 +147,8 @@
 
 
 
-
+            <div class="modal-release-author">
+            </div>
             <h2 class="modal-title"></h2>
 
             <img class="modal-image" src="" alt="" />

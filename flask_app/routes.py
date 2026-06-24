@@ -1,6 +1,6 @@
-# to do: ability to edit custom reviews
-# to do: display author for books, director for movie? and year published/released
-# to do: search bar for reviews
+# to do: ability to EDIT CUSTOM REVIEWS
+# to do: connect tag buttons
+
 
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
@@ -221,6 +221,7 @@ def edit_review(review_id):
         review.content = request.form.get('review_text')
         review.rating = int(request.form.get('rating'))
         review.date_finished = request.form.get('date_finished')
+        review.tags = request.form.get('tags-input')
 
         db.session.commit()
         return redirect(url_for('home'))

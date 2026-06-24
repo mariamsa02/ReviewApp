@@ -388,6 +388,11 @@ cursor: pointer;
     width: 100%;
 }
 
+.modal-release-author {
+    font-family: var(--font-body);
+
+}
+
 /* text wrapping! */
 .modal-image {
     float: left;

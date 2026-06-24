@@ -34,8 +34,10 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
 
     //querySelector finds the modal metadata
     const metadata = modal.querySelector(".modal-metadata");
+    // for authors, release dates
+    const header = modal.querySelector(".modal-release-author");
 
-    // for custom category reviews:
+    // for custom category reviews, and author/release info:
     if (custom_data) {
         customFields = JSON.parse(custom_data);
     } else {
@@ -43,11 +45,13 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
     }
 
     let customHTML = '';
+    let headerHTML = '';
     for (const [key, value] of Object.entries(customFields)) {
         if (value) {
 
         if (key == "meta") {
-        customHTML += `<p>${value}</p>`
+        formattedValue = value.replaceAll(",", " | ");
+        headerHTML += `<p>${formattedValue}</p>`
         }
         else {
             customHTML += `<p><strong>${key}:</strong> ${value}</p>`;
@@ -66,12 +70,19 @@ let tagsHTML = '';
 let btnClass = "tag-btn";
 if (tags) {
 for (const tag of tagsArray) {
-tagsHTML += `<button class=${btnClass} id=${tag}>${tag}</button>`
+tagsHTML += `<button class="${btnClass}" id="${tag}">${tag}</button>`
 }
 }
+
+
+
+// innerHTML used to edit header
+header.innerHTML = `<p>${headerHTML}</p>`;
+
 
 
     // Use the innerHTML to edit the metadata. The inner html will appear inside that specific div. stars and date go here
+    // tags divs will only be created if tags are present
     metadata.innerHTML = `<div>
     <p>
     <strong>Rating:</strong>
@@ -90,11 +101,15 @@ tagsHTML += `<button class=${btnClass} id=${tag}>${tag}</button>`
     <div>
     ${customHTML}
     </div>
-    <div class="modal-tags">
+
+    ${tagsHTML ?
+    `<div class="modal-tags">
     <p>
     <span class="tags-content">${tagsHTML}</span>
     </p>
     </div>
+    ` : ''}
+
     `;
 
     // classList.add("show") means activate the modal.show in CSS?
