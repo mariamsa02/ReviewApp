@@ -907,6 +907,25 @@ margin-top: 10px;
 
 .edit-close:hover { color: var(--accent-color); }
 
+.edit-image-input {
+margin-top: 10px;
+    width: 80%;
+    height: 60px;
+    text-align: left;
+    padding: 2px 5px;
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 5px;
+       resize: none;
+}
+
+.edit-img {
+    height: 250px;
+    width: auto;
+    display: block;
+    border: 1px solid var(--border-color);
+    }
 
 /* CUSTOM CATEGORY FORM */
 .category-close {

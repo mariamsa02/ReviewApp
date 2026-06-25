@@ -112,7 +112,10 @@ def save_custom_review(category_id):
         content = request.form.get('review_text')
         rating = request.form.get('rating', 1)
         image_url = request.form.get('image_url')
-        tags_input = request.form.get('tags_input')
+        tags_input = request.form.get('tags_input') or ''
+        tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
+        tags_formatted = ','.join(tags_formatted)
+
         if request.form.get('date_finished'):
             date_finished = request.form.get('date_finished')
         else:
@@ -135,7 +138,7 @@ def save_custom_review(category_id):
             date_finished = date_finished,
             # Save as a string
             custom_data=json.dumps(custom_fields),
-            tags=tags_input,
+            tags=tags_formatted,
             # Connects to the logged-in user
             author=current_user
         )
@@ -163,8 +166,10 @@ def save_review():
         rating = request.form.get('rating', 1)
         image_url = request.form.get('image_url')
         date_finished = request.form.get('date_finished')
-        tags_input = request.form.get('tags_input')
 
+        tags_input = request.form.get('tags_input') or ''
+        tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
+        tags_formatted = ','.join(tags_formatted)
 
     # custom fields like author etc., store as json string
         extra_fields = {}
@@ -182,7 +187,7 @@ def save_review():
             date_finished = date_finished,
             # Save as a string
             custom_data=json.dumps(extra_fields),
-            tags=tags_input,
+            tags=tags_formatted,
             # Connects to the logged-in user
             author=current_user
         )
@@ -218,10 +223,15 @@ def edit_review(review_id):
 
     if request.method == 'POST':
         review.title = request.form.get('title')
+        review.image_url = request.form.get('image_url')
         review.content = request.form.get('review_text')
         review.rating = int(request.form.get('rating'))
         review.date_finished = request.form.get('date_finished')
-        review.tags = request.form.get('tags-input')
+        tags_input = request.form.get('tags-input') or ''
+        tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
+        review.tags = ','.join(tags_formatted)
+
+
 
         db.session.commit()
         return redirect(url_for('home'))
