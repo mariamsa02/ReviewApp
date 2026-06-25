@@ -70,7 +70,7 @@ let tagsHTML = '';
 let btnClass = "tag-btn";
 if (tags) {
 for (const tag of tagsArray) {
-tagsHTML += `<button class="${btnClass}" id="${tag}">${tag}</button>`
+tagsHTML += `<button class="${btnClass}" id="${tag}" data-tag="${tag}">${tag}</button>`
 }
 }
 
@@ -226,6 +226,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
+
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('tag-btn')) {
+        const tag = event.target.dataset.tag;
+        window.location.href = `/home?tag=${tag}`;
+    }
+});
+
+
 
 // add ability to delete custom catgegories
 document.addEventListener('DOMContentLoaded', () => {

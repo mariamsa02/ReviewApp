@@ -1,4 +1,4 @@
-# to do: ability to EDIT CUSTOM REVIEWS
+# to do: ability to EDIT CUSTOM REVIEWS (separate page?)
 # to do: connect tag buttons
 
 
@@ -28,7 +28,18 @@ def home():
         query = query.filter_by(rating=int(rating))
     reviews = query.all()
 
-    return render_template('home.html', reviews=reviews, categories=categories)
+# filter on python list (reviews)
+    tag = request.args.get('tag')
+    if tag:
+        filtered = []
+        for review in reviews:
+            if review.tags:
+                tag_list = [t for t in review.tags.split(',')]
+                if tag in tag_list:
+                    filtered.append(review)
+        reviews = filtered
+
+    return render_template('home.html', reviews=reviews, categories=categories, tag=tag)
 
 
 @app.route("/api/search")
