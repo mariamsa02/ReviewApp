@@ -1,6 +1,4 @@
 # to do: ability to EDIT CUSTOM REVIEWS (separate page?)
-# to do: connect tag buttons
-
 
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
@@ -231,6 +229,10 @@ def delete_review(review_id):
 @login_required
 def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
+    if review.category not in ['Book', 'Movie', 'TV']:
+        custom_cat = Category.query.filter_by(name=review.category, user_id=current_user.id).first()
+    else:
+        custom_cat = None
 
     if request.method == 'POST':
         review.title = request.form.get('title')
@@ -243,11 +245,10 @@ def edit_review(review_id):
         review.tags = ','.join(tags_formatted)
 
 
-
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template('edit.html', review=review)
+    return render_template('edit.html', review=review, custom_cat=custom_cat)
 
 
 @app.route("/register", methods=['GET', 'POST'])
