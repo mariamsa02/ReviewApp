@@ -1,4 +1,4 @@
-# to do: ability to EDIT CUSTOM REVIEWS (separate page?)
+# to do: input validation
 
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
@@ -230,9 +230,9 @@ def delete_review(review_id):
 def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
     if review.category not in ['Book', 'Movie', 'TV']:
-        custom_cat = Category.query.filter_by(name=review.category, user_id=current_user.id).first()
+        custom_fields = json.loads(review.custom_data)
     else:
-        custom_cat = None
+        custom_fields = None
 
     if request.method == 'POST':
         review.title = request.form.get('title')
@@ -244,11 +244,16 @@ def edit_review(review_id):
         tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
         review.tags = ','.join(tags_formatted)
 
+        if custom_fields:
+            updated_fields = {}
+            for key in custom_fields:
+                updated_fields[key] = request.form.get(key, '')
+            review.custom_data = json.dumps(updated_fields)
 
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template('edit.html', review=review, custom_cat=custom_cat)
+    return render_template('edit.html', review=review, custom_fields=custom_fields)
 
 
 @app.route("/register", methods=['GET', 'POST'])

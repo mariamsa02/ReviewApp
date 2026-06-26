@@ -55,7 +55,11 @@
             <div class="media-flex">
                <!-- Left Column: Poster/Cover, Rating, Dates -->
                 <div class="media-left">
+                    {% if review.image_url %}
                     <img src="{{review.image_url}}" alt="{{review.title}}" class="edit-img">
+                    {% else %}
+                    <label class="left-labels">Add Image:</label>
+                    {% endif %}
                     <textarea class="edit-image-input" name="image_url">{{review.image_url}}</textarea>
 
                     <div class="rating-dates">
@@ -67,9 +71,16 @@
                             <option value="4" {% if review.rating == 4 %}selected{% endif %}>★★★★☆</option>
                             <option value="5" {% if review.rating == 5 %}selected{% endif %}>★★★★★</option>
                          </select>
-
+                        {% if review.date_finished %}
                         <label class="left-labels">Finish Date:</label>
                         <input type="date" id="date_finished" name="date_finished" value="{{review.date_finished}}"/>
+                        {% endif %}
+                        {% if custom_fields %}
+                        {% for key, value in custom_fields.items() %}
+                        <label class="custom-labels">{{ key }}:</label>
+                        <input type="text" name="{{key}}" value="{{ value }}" class="custom_input">
+                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
 
