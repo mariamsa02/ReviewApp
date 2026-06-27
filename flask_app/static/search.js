@@ -144,7 +144,7 @@ function displayBookResults(data, category) {
 
         `;
 
-        const bookMeta = [author, published]
+        const bookMeta = {"Author": author, "Publish Year": published}
 
         card.querySelector('.result-img').addEventListener('click', () => {
                 selectMedia(title, imgPath, category, bookMeta);
@@ -191,7 +191,7 @@ function displayMediaResults(data, category) {
 
         `;
 
-        const mediaMeta = [release]
+        const mediaMeta = {"Release Year": release}
         card.querySelector('.result-img').addEventListener('click', () => {
                 selectMedia(title, imgPath, category, mediaMeta);
         });
@@ -209,7 +209,7 @@ function selectMedia(title, imgPath, category, meta) {
         title: title,
         image_url: imgPath,
         category: category,
-        meta: meta,
+        meta: JSON.stringify(meta),
     });
     window.location.href = `/new?${params}`;
 }

@@ -58,7 +58,8 @@
     </span>
 
     <div class="review-meta">
-  <p>{{ meta.replace(",", " • ") }}</p>
+{{ meta | replace('{', '') | replace('}', '') | replace('"', '')  | replace(':', ': ') | replace(',', ' | ')}}
+        <!--<p>{{ meta.replace(",", " • ") }}</p>-->
     </div>
 
             <div class="media-flex">

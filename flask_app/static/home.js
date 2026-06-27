@@ -50,11 +50,10 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
         if (value) {
 
         if (key == "meta") {
-        formattedValue = value.replaceAll(",", " | ");
         headerHTML += `<p>${formattedValue}</p>`
         }
         else {
-            customHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+            customHTML += `<span><strong>${key}:</strong> ${value} | </span>`;
         }
         }
     }
@@ -77,7 +76,10 @@ tagsHTML += `<button class="${btnClass}" id="${tag}" data-tag="${tag}">${tag}</b
 
 
 // innerHTML used to edit header
+if (headerHTML) {
 header.innerHTML = `<p>${headerHTML}</p>`;
+}
+else {header.innerHTML = `${customHTML}`;}
 
 
 
@@ -97,9 +99,6 @@ header.innerHTML = `<p>${headerHTML}</p>`;
     </div>
     <div>
     <p><strong>Category: </strong>${category}</p>
-    </div>
-    <div>
-    ${customHTML}
     </div>
 
     ${tagsHTML ?
