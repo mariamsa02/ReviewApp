@@ -120,7 +120,7 @@ def save_custom_review(category_id):
         category_name = category.name
         content = request.form.get('review_text')
         rating = request.form.get('rating', 1)
-        image_url = request.form.get('image_url')
+        image_url = request.form.get('image_url').strip()
         tags_input = request.form.get('tags_input') or ''
         tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
         tags_formatted = ','.join(tags_formatted)
@@ -167,6 +167,11 @@ def save_custom_review(category_id):
 @app.route("/new", methods=['GET', 'POST'])
 @login_required
 def save_review():
+
+    # meta_str for the database, meta_dict for display
+    meta_str = request.args.get('meta')
+    meta_dict = json.loads(meta_str) if meta_str else {}
+
     if request.method == 'POST':
     # Get data from the form, must match HTML tags
         title = request.form.get('title')
@@ -185,8 +190,14 @@ def save_review():
         for key in request.form:
             if key not in ['title', 'category', 'review_text', 'rating', 'image_url', 'date_finished', 'tags_input']:
                 extra_fields[key] = request.form.get(key)
+                # if the key is meta, merge it into the extra fields to keep displaying cleaner
+                if key == 'meta':
+                    # turn the string back into a dictionary
+                    metadata_dict = json.loads(request.form.get("meta"))
+                    extra_fields.update(metadata_dict)
+                    del extra_fields['meta']
 
-        # create database object
+    # create database object
         saved_review = Review(
             title=title,
             category=category,
@@ -212,8 +223,9 @@ def save_review():
                            title=request.args.get('title'),
                            image_url=request.args.get('image_url'),
                            category=request.args.get('category'),
-                           meta = request.args.get('meta')
-    )
+                           meta_dict=meta_dict,
+                           meta_str=meta_str
+                           )
 
 
 @app.route("/delete/<int:review_id>", methods=['POST'])
@@ -236,7 +248,7 @@ def edit_review(review_id):
 
     if request.method == 'POST':
         review.title = request.form.get('title')
-        review.image_url = request.form.get('image_url')
+        review.image_url = request.form.get('image_url').strip()
         review.content = request.form.get('review_text')
         review.rating = int(request.form.get('rating'))
         review.date_finished = request.form.get('date_finished')

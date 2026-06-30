@@ -48,13 +48,11 @@ function openModal(title, image, content, rating, date_finished, id, custom_data
     let headerHTML = '';
     for (const [key, value] of Object.entries(customFields)) {
         if (value) {
-
-        if (key == "meta") {
-        headerHTML += `<p>${formattedValue}</p>`
-        }
-        else {
-            customHTML += `<span><strong>${key}:</strong> ${value} | </span>`;
-        }
+            if (Object.keys(customFields).length > 1) {
+            customHTML += `<span><strong>${key}:</strong> ${value} | </span>`;}
+            else {
+            customHTML += `<span><strong>${key}:</strong> ${value}</span>`;
+            }
         }
     }
 

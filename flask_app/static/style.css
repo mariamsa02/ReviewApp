@@ -292,6 +292,7 @@ cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-height: 25px;
 }
 
 .review-content {
@@ -301,9 +302,11 @@ cursor: pointer;
 }
 
 .review-image {
-    float: left;
-    width: 120px;
+    /*float: left;*/
+    /*width: 120px;
+    height: 180px;*/
     height: 180px;
+    width: auto;
     object-fit: cover;
     border-radius: var(--radius-sm);
     /* space between image and text */

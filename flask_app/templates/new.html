@@ -47,7 +47,7 @@
         <input type="hidden" name="title" value="{{ title }}">
         <input type="hidden" name="image_url" value="{{ image_url }}">
         <input type="hidden" name="category" value="{{ category }}">
-        <input type="hidden" name="meta" value="{{ meta }}">
+        <input type="hidden" name="meta" value="{{ meta_str }}">
 
 
         <div class="review-header">
@@ -58,8 +58,10 @@
     </span>
 
     <div class="review-meta">
-{{ meta | replace('{', '') | replace('}', '') | replace('"', '')  | replace(':', ': ') | replace(',', ' | ')}}
-        <!--<p>{{ meta.replace(",", " • ") }}</p>-->
+        {% for key, value in meta_dict.items() %}
+    <span><strong>{{ key }}:</strong> {{ value }}</span>
+        {% if not loop.last %}<span> | </span>{% endif %}
+{% endfor %}
     </div>
 
             <div class="media-flex">
