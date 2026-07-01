@@ -305,8 +305,8 @@ cursor: pointer;
     /*float: left;*/
     /*width: 120px;
     height: 180px;*/
-    height: 180px;
-    width: auto;
+    height: auto;
+    width: 125px;
     object-fit: cover;
     border-radius: var(--radius-sm);
     /* space between image and text */
@@ -400,7 +400,8 @@ cursor: pointer;
 .modal-image {
     float: left;
     width: 200px;
-    height: 300px;
+    /*height changed from 300px to work with different photo sizes*/
+    height: auto;
     object-fit: cover;
     margin-right: 25px;
     margin-bottom: 15px;
