@@ -1,4 +1,13 @@
 # to do: input validation
+# to do: create a new review page for users to use for books/tv shows/movies without searching
+#           should get category from request.args
+#           use this category to render a similar review page to custom reviews-
+#           -with the field names fixed. Use jinja if statements based on the categories. They can be-
+#           -hardcoded into the HTML because there are only two possible fields (Author and release year).
+#           Will be saved the same as metadata in the reviews that used the API search.
+#           it should end up looking exactly the same as the API reviews.
+#           I want the metadata to be editable like the feilds are for custom reviews,-
+#           -but that means API reviews should also have editable metadata.
 
 import json
 from flask import render_template, url_for, redirect, flash, jsonify, request
