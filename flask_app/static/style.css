@@ -568,23 +568,35 @@ font-size: 18px;
     display: flex;
     background: var(--bg-card);
     border: 2px solid var(--border-color);
-    border-radius: 60px;
-    width: 500px;
-    height: 60px;
+    border-radius: 20px;
+    width: 500px; /*prev: 500px*/
+    height: 45px; /*prev: 60px*/
     padding: 8px 10px;
+    position: absolute;
 }
 
+.search-container:focus-within {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+    }
+
+.search-container:focus-within .search-btn {
+    background: var(--accent-color);
+    transition: background 0.2s ease;
+}
 .search-title {
     margin-bottom: 10px;
 }
 
-.search-container input {
+.media-search {
     flex: 1;
     background: transparent;
     border: 0;
     outline: none;
-    padding: 20px;
-    font-size: 1rem;
+    /*padding: 20px;*/ /*testing how searchbar looks smaller*/
+    padding-left: 15px;
+    /*font-size: 1rem;*/
     color: var(--text-primary);
     font-family: var(--font-body);
     font-weight: bold;
@@ -592,18 +604,50 @@ font-size: 18px;
 }
 
 .search-btn {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
+    height: 45px; /*60px*/
+    width: 60px;
+    border-radius: 0 20px 20px 0;
     background:  var(--border-color);
     cursor: pointer;
+    border: none;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    margin: -1.5px;
+
 }
 
 .search-btn .search-icon {
-    font-size: 20px;
+    font-size: 18px; /*prev: 20px*/
     text-align: center;
-    flex-shrink: 0;
     color: var(--text-primary);
+}
+
+.add-btn {
+display: flex;
+margin-left: 530px;
+gap: 10px;
+}
+
+#manual-txt {
+margin-top: 12px;
+}
+
+#manual-btn {
+    padding: 14px 22px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    font-family: var(--font-main);
+    border-radius: 12px;
+    cursor: pointer;
+    }
+
+#manual-btn:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--shadow-color);
 }
 
 #loading {
@@ -615,9 +659,8 @@ font-size: 18px;
 
 /* SEARCH RESULTS */
 
-.search-results {
-    gap: 20px;
-    padding: 20px;
+#search-results {
+    padding-top: 10px;
 }
 .result-img {
     cursor: pointer;

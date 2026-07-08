@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const resultsDiv = document.getElementById('search-results');
     const searchTitle = document.querySelector('.search-title');
-    if (searchTitle) searchTitle.innerHTML = `Search for ${currentCategory}`;
+    // Set up for when page is first loaded
+    if (searchTitle) searchTitle.innerHTML = `<h3>Movies</h3><p>Search and browse movies</p>`;
 
     customBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (text === "TV Shows") currentCategory = "TV";
             else if (text === "Books") currentCategory = "Book";
 
-            if (searchTitle) searchTitle.innerHTML = `Search for ${text}`;
+            if (searchTitle) searchTitle.innerHTML = `<h3>${text}</h3><p>Search and browse ${text.toLowerCase()}`;
         });
     });
 
