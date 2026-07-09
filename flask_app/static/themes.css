@@ -25,6 +25,7 @@
     --font-main: 'berk', sans-serif;
     --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --radius-md: 12px;
+
 }
 
 /* BASE STYLES */
@@ -36,6 +37,7 @@
 
 body {
     background-color: var(--bg-main);
+    /*background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-main) 50%);*/
     color: var(--text-primary);
     min-height: 100vh;
     line-height: 1.6;
@@ -67,7 +69,8 @@ body.light-mode {
 
 
 body.light-mode .sidebar {
-    background: linear-gradient(180deg, #E0EDFF 0%, #E8E0FF 100%);
+/*prev: 180deg*/
+    background: linear-gradient(293deg, #E0EDFF 0%, #E8E0FF 100%);
 }
 
 body.light-mode .review-btn:hover, .edit-btn:hover, .delete-btn:hover {

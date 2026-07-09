@@ -147,7 +147,8 @@ function displayBookResults(data, category) {
 
         const bookMeta = {"Author": author, "Publish Year": published}
 
-        card.querySelector('.result-img').addEventListener('click', () => {
+        //card.querySelector('.result-img').addEventListener('click', () => {
+        card.addEventListener('click', () => {
                 selectMedia(title, imgPath, category, bookMeta);
         });
 
@@ -193,7 +194,8 @@ function displayMediaResults(data, category) {
         `;
 
         const mediaMeta = {"Release Year": release}
-        card.querySelector('.result-img').addEventListener('click', () => {
+        // card.querySelector('.result-img').addEventListener('click', () => {
+        card.addEventListener('click', () => {
                 selectMedia(title, imgPath, category, mediaMeta);
         });
 

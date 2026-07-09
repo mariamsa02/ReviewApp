@@ -669,7 +669,7 @@ margin-top: 12px;
     height: 300px;
 
 }
-.result-img:hover { transform: scale(1.05); }
+/*.result-img:hover { transform: scale(1.05); }*/
 
 .results-card {
     display: flex;
@@ -684,6 +684,13 @@ margin-top: 12px;
     padding: 20px;
     background: var(--bg-card);
 
+}
+
+.results-card:hover {
+    border: 2px solid var(--accent-color);
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: 0.2s;
 }
 
 .result-info {
@@ -809,11 +816,10 @@ cursor: pointer;
 
 
 
-  .media-right {
+.media-right {
     margin-top: 25px;
     flex: 2;
   }
-
 
 .review-form {
     text-align: center;
@@ -1099,6 +1105,12 @@ margin-top: 10px;
     font-size: 0.95rem;
     line-height: 1.5;
 }
+
+.category-field:focus-within, .category-name:focus-within {
+    outline: none;
+    border: 2px solid var(--accent-color);
+    border-radius: 2px;
+    }
 
 .field-label, .category-label {
     font-size: 16px;
