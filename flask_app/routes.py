@@ -227,6 +227,55 @@ def save_review():
                            )
 
 
+
+@app.route("/manual-review", methods=['GET', 'POST'])
+@login_required
+def manual_review():
+    if request.method == 'POST':
+    # Get data from the form, must match HTML tags
+        title = request.form.get('title')
+        category = request.form.get('category')
+        content = request.form.get('review_text')
+        rating = request.form.get('rating', 1)
+        image_url = request.form.get('image_url')
+        date_finished = request.form.get('date_finished')
+
+        tags_input = request.form.get('tags_input') or ''
+        tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
+        tags_formatted = ','.join(tags_formatted)
+
+        # get metadata from form, same as meta_str
+        metadata = request.form.get("meta")
+
+    # create database object
+        saved_review = Review(
+            title=title,
+            category=category,
+            content=content,
+            rating=int(rating),
+            image_url=image_url,
+            date_finished =date_finished,
+            custom_data=metadata,
+            tags=tags_formatted,
+            # Connects to the logged-in user
+            author=current_user
+        )
+
+        # save and commit
+        db.session.add(saved_review)
+        db.session.commit()
+
+        # flash('Review created!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('manual_review.html',
+                           category=request.args.get('category'),
+                           )
+
+
+
+
+
 @app.route("/delete/<int:review_id>", methods=['POST'])
 @login_required
 def delete_review(review_id):

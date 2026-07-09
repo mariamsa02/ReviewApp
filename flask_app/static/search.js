@@ -204,32 +204,9 @@ function displayMediaResults(data, category) {
 } // closes displayResults
 
 
-
-// Manual button, made to work on new.html as well
-const manualBtn = document.getElementById("manual-btn");
-manualBtn.addEventListener('click', () => {
-        manualClick();
-});
-
-function manualClick() {
-        let title, imgPath, meta;
-        title = "manual";
-        imgPath = "manual";
-        category = currentCategory;
-        if (category === "Book") {
-                meta = { "Author": "manual", "Publish Year": "manual" }
-        }
-        else {
-                meta = { "Release Year": "manual" }
-        }
-        selectMedia(title, imgPath, category, meta);
-}
-
-
-// should work with both manual button and search-select
 let selectedMedia = {};
 
-// select media/selecting a poster
+// select media/selecting a poster, works only for search-select
 function selectMedia(title, imgPath, category, meta) {
     const params = new URLSearchParams({
         title: title,
@@ -239,6 +216,23 @@ function selectMedia(title, imgPath, category, meta) {
     });
     window.location.href = `/new?${params}`;
 }
+
+
+
+// Manual button, DOES NOT work on new.html
+const manualBtn = document.getElementById("manual-btn");
+manualBtn.addEventListener('click', () => {
+        manualClick();
+});
+
+function manualClick() {
+    const params = new URLSearchParams({
+        category: currentCategory
+    });
+        window.location.href = `/manual-review?${params}`;
+}
+
+
 
 
 // Typing effect for loading screen

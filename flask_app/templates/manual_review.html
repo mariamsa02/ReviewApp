@@ -58,10 +58,7 @@
     </span>
 
                     <div class="review-meta">
-                        {% for key, value in meta_dict.items() %}
-                        <span><strong>{{ key }}:</strong> {{ value }}</span>
-                        {% if not loop.last %}<span> | </span>{% endif %}
-                        {% endfor %}
+
                     </div>
 
                     <div class="media-flex">
@@ -107,4 +104,3 @@
 </main>
 <script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
-</html>
