@@ -1,5 +1,4 @@
 # to do: input validation
-# to do: edit doesn't work without meta fields!!!!!
 # to do: create a new review page for users to use for books/tv shows/movies without searching
 #           should get category from request.args
 #           use this category to render a similar review page to custom reviews-
@@ -253,6 +252,7 @@ def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
     if review.category not in ['Book', 'Movie', 'TV']:
         custom_fields = json.loads(review.custom_data)
+        meta_fields = None
     else:
         custom_fields = None
         # to give the user the ability to edit metadata

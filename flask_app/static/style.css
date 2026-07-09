@@ -687,7 +687,7 @@ margin-top: 12px;
 }
 
 .results-card:hover {
-    border: 2px solid var(--accent-color);
+    border: 1.5px solid var(--accent-color);
     cursor: pointer;
     transform: scale(1.02);
     transition: 0.2s;
