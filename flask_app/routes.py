@@ -196,15 +196,8 @@ def save_review():
 
     # custom fields like author etc., store as json string
         extra_fields = {}
-        for key in request.form:
-            if key not in ['title', 'category', 'review_text', 'rating', 'image_url', 'date_finished', 'tags_input']:
-                extra_fields[key] = request.form.get(key)
-                # if the key is meta, merge it into the extra fields to keep displaying cleaner
-                if key == 'meta':
-                    # turn the string back into a dictionary
-                    metadata_dict = json.loads(request.form.get("meta"))
-                    extra_fields.update(metadata_dict)
-                    del extra_fields['meta']
+        metadata_dict = json.loads(request.form.get("meta"))
+        extra_fields.update(metadata_dict)
 
     # create database object
         saved_review = Review(
