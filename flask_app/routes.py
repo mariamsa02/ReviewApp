@@ -194,10 +194,8 @@ def save_review():
         tags_formatted = [t.strip().lower() for t in tags_input.split(',') if t.strip()]
         tags_formatted = ','.join(tags_formatted)
 
-    # custom fields like author etc., store as json string
-        extra_fields = {}
-        metadata_dict = json.loads(request.form.get("meta"))
-        extra_fields.update(metadata_dict)
+        # get metadata from form, same as meta_str
+        metadata = request.form.get("meta")
 
     # create database object
         saved_review = Review(
@@ -206,9 +204,8 @@ def save_review():
             content=content,
             rating=int(rating),
             image_url=image_url,
-            date_finished = date_finished,
-            # Save as a string
-            custom_data=json.dumps(extra_fields),
+            date_finished =date_finished,
+            custom_data=metadata,
             tags=tags_formatted,
             # Connects to the logged-in user
             author=current_user

@@ -204,6 +204,29 @@ function displayMediaResults(data, category) {
 } // closes displayResults
 
 
+
+// Manual button, made to work on new.html as well
+const manualBtn = document.getElementById("manual-btn");
+manualBtn.addEventListener('click', () => {
+        manualClick();
+});
+
+function manualClick() {
+        let title, imgPath, meta;
+        title = "manual";
+        imgPath = "manual";
+        category = currentCategory;
+        if (category === "Book") {
+                meta = { "Author": "manual", "Publish Year": "manual" }
+        }
+        else {
+                meta = { "Release Year": "manual" }
+        }
+        selectMedia(title, imgPath, category, meta);
+}
+
+
+// should work with both manual button and search-select
 let selectedMedia = {};
 
 // select media/selecting a poster
