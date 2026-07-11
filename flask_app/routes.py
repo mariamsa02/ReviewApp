@@ -295,7 +295,7 @@ def delete_review(review_id):
 def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
     if review.category not in ['Book', 'Movie', 'TV']:
-        custom_fields = review.custom_data
+        custom_fields = json.loads(review.custom_data)
         meta_fields = None
     else:
         custom_fields = None
