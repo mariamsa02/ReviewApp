@@ -294,14 +294,7 @@ def delete_review(review_id):
 @login_required
 def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
-    if review.category not in ['Book', 'Movie', 'TV']:
-        custom_fields = json.loads(review.custom_data)
-        meta_fields = None
-    else:
-        custom_fields = None
-        # to give the user the ability to edit metadata
-        # this is for if the information is wrong for some reason, or the user wants to log something that isn't in the API(?)
-        meta_fields = review.custom_data
+    custom_fields = json.loads(review.custom_data)
 
     if request.method == 'POST':
         review.title = request.form.get('title')
@@ -322,7 +315,7 @@ def edit_review(review_id):
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template('edit.html', review=review, custom_fields=custom_fields, meta_fields=meta_fields)
+    return render_template('edit.html', review=review, custom_fields=custom_fields)
 
 
 @app.route("/register", methods=['GET', 'POST'])

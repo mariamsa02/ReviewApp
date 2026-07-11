@@ -78,9 +78,14 @@
                         {% if custom_fields %}
                         {% for key, value in custom_fields.items() %}
                         <label class="custom-labels">{{ key }}:</label>
-                        <input type="text" name="{{key}}" value="{{ value }}" class="custom_input">
+                            {% if key=="Release Year"%}
+                                <input type="number" name="{{key}}" value="{{ value }}" class="custom_input">
+                            {% else %}
+                                <input type="text" name="{{key}}" value="{{ value }}" class="custom_input">
+                            {% endif %}
                         {% endfor %}
                         {% endif %}
+
                     </div>
                 </div>
 
