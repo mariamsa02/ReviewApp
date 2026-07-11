@@ -946,6 +946,10 @@ margin-top: 10px;
 
 }
 
+.title-input:focus {
+outline: none;
+}
+
 .edit-close {
     color: var(--text-secondary);
     font-size: 23px;

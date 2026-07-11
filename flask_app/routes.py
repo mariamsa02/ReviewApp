@@ -237,7 +237,7 @@ def manual_review():
         category = request.form.get('category')
         content = request.form.get('review_text')
         rating = request.form.get('rating', 1)
-        image_url = request.form.get('image_url')
+        image_url = request.form.get('image_url').strip()
         date_finished = request.form.get('date_finished')
 
         tags_input = request.form.get('tags_input') or ''
@@ -245,7 +245,12 @@ def manual_review():
         tags_formatted = ','.join(tags_formatted)
 
         # get metadata from form, same as meta_str
-        metadata = request.form.get("meta")
+        metadata = {}
+        release_year = request.form.get('year')
+        if category == "Book":
+            author = request.form.get('author')
+            metadata["Author"] = author
+        metadata["Release Year"] = release_year
 
     # create database object
         saved_review = Review(
@@ -255,7 +260,7 @@ def manual_review():
             rating=int(rating),
             image_url=image_url,
             date_finished =date_finished,
-            custom_data=metadata,
+            custom_data=json.dumps(metadata),
             tags=tags_formatted,
             # Connects to the logged-in user
             author=current_user
@@ -290,13 +295,13 @@ def delete_review(review_id):
 def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
     if review.category not in ['Book', 'Movie', 'TV']:
-        custom_fields = json.loads(review.custom_data)
+        custom_fields = review.custom_data
         meta_fields = None
     else:
         custom_fields = None
         # to give the user the ability to edit metadata
         # this is for if the information is wrong for some reason, or the user wants to log something that isn't in the API(?)
-        meta_fields = json.loads(review.custom_data)
+        meta_fields = review.custom_data
 
     if request.method == 'POST':
         review.title = request.form.get('title')

@@ -43,28 +43,34 @@
     <div class="form-container">
 
         <div class="review-form">
-            <form method="POST" action="/new">
-                <input type="hidden" name="title" value="{{ title }}">
-                <input type="hidden" name="image_url" value="{{ image_url }}">
+            <form method="POST" action="/manual-review">
                 <input type="hidden" name="category" value="{{ category }}">
-                <input type="hidden" name="meta" value="{{ meta_str }}">
-
 
                 <div class="review-header">
 
-                    <h1 class="review-title">{{ title }}</h1>
+                    <input type="text" name="title" class="title-input" placeholder="Title" required>
                     <span class="review-close">
         <a id="review-close" href="{{url_for('search')}}">&times;</a>
     </span>
 
                     <div class="review-meta">
-
                     </div>
 
                     <div class="media-flex">
                         <!-- Left Column: Poster/Cover, Rating, Dates -->
-                        <div class="media-left">
-                            <img src="{{ image_url }}" alt="{{ title }}" class="media-img">
+                        <div class="custom-media-left">
+                            <!--image-->
+                            <label class="custom-labels">Image URL:</label>
+                            <textarea class="image-input" name="image_url"
+                                      placeholder="https://example.com/image.jpg"></textarea>
+
+                            {% if category == "Book" %}
+                            <label class="custom-labels">Author:</label>
+                            <input type="text" name="author" class="fields-input" required>
+                            {% endif %}
+                            <label class="custom-labels">Release Year:</label>
+                            <input type="number" class="fields-input" name="year" min="1900" max="2099" step="1" placeholder="YYYY" required>
+
                             <div class="rating-dates">
                                 <label class="left-labels">Rating:</label>
                                 <select id="rating" name="rating" required>
@@ -77,6 +83,7 @@
                                 <label class="left-labels">Finish Date:</label>
                                 <input type="date" id="date_finished" name="date_finished" placeholder="mm/dd/yyyy"/>
                             </div>
+
                         </div>
 
                         <!-- Right Column: Review, Tags -->
