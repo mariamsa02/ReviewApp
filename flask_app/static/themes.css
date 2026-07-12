@@ -76,3 +76,33 @@ body.light-mode .sidebar {
 body.light-mode .review-btn:hover, .edit-btn:hover, .delete-btn:hover {
     color: var(--text-white);
 }
+
+
+body.light-berry {
+    --accent-color: #172357;
+    --accent-hover: #b98391;
+
+
+    --bg-main: #eeeeee;
+    --bg-card: #d9a6b3;
+    --bg-overlay: rgb(185 131 145 / 40%);
+
+    --border-color:#e2e2dA;
+    --shadow-color: rgba(74, 144, 217, 0.2);
+
+    --text-primary: #172357;
+    --text-secondary: #172357;
+
+    --text-white: #FFFFFF;
+    --text-dark: #353935;
+}
+
+
+body.light-berry .sidebar {
+/*prev: 180deg*/
+    background: linear-gradient(293deg, #B98391 0%, #d9a6b3 100%);
+}
+
+body.light-berry .review-btn:hover, .edit-btn:hover, .delete-btn:hover, .sidebar-btn:hover {
+    color: var(--text-white);
+}
