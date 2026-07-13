@@ -7,7 +7,7 @@
 }
 
 
-/* Main/dark mode */
+/* THEME 1/MAIN */
 :root {
     --accent-color: #FF6BB5;
     --accent-hover: #ff52b7;
@@ -48,6 +48,10 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; outline: none; }
 
+
+
+
+/*THEME 2*/
 body.light-mode {
     --accent-color: #6B7FD9;
     --accent-hover: #5A6FC8;
@@ -78,6 +82,8 @@ body.light-mode .review-btn:hover, .edit-btn:hover, .delete-btn:hover {
 }
 
 
+
+/*THEME 3*/
 body.light-berry {
     --accent-color: #172357;
     --accent-hover: #b98391;
@@ -87,7 +93,7 @@ body.light-berry {
     --bg-card: #d9a6b3;
     --bg-overlay: rgb(185 131 145 / 40%);
 
-    --border-color:#e2e2dA;
+    --border-color:#eeeeee;
     --shadow-color: rgba(74, 144, 217, 0.2);
 
     --text-primary: #172357;
@@ -99,10 +105,45 @@ body.light-berry {
 
 
 body.light-berry .sidebar {
-/*prev: 180deg*/
-    background: linear-gradient(293deg, #B98391 0%, #d9a6b3 100%);
+    /*background: linear-gradient(293deg, #B98391 0%, #d9a6b3 100%);*/
+    background-color: var(--bg-card);
 }
 
-body.light-berry .review-btn:hover, .edit-btn:hover, .delete-btn:hover, .sidebar-btn:hover {
+body.light-berry .review {
+border-color: var(--accent-hover);
+}
+
+body.light-berry .results-card {
+border: 1px solid var(--accent-hover);
+}
+
+body.light-berry .review-btn:hover, .edit-btn:hover, .delete-btn:hover {
     color: var(--text-white);
 }
+
+body.light-berry .sidebar-btn {
+    color: var(--bg-main);
+}
+
+
+body.light-berry .search-container {
+border-color: var(--accent-hover);
+}
+
+body.light-berry .search-container:focus-within {
+border-color: var(--accent-color);
+}
+
+body.light-berry .search-btn {
+background-color: var(--accent-hover);
+}
+
+body.light-berry .search-container:focus-within .search-icon, search-btn {
+color: var(--bg-main);
+}
+
+body.light-berry .dropbtn:hover
+{color: var(--bg-main);}
+
+body.light-berry close-btn:hover
+{color: var(--bg-main);}

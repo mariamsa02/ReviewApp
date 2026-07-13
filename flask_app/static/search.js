@@ -9,10 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
     themeSelect.addEventListener('change', (event) => {
         const theme = event.target.value;
         if (theme === 'light-mode') {
+                document.body.classList = '';
                 document.body.classList.add('light-mode');
         }
-        else {
-                document.body.classList.remove('light-mode');
+        if (theme === 'dark-mode') {
+                document.body.classList = '';
+                document.body.classList.add('dark-mode');
+        }
+        if (theme === 'dark-berry') {
+                document.body.classList = '';
+                document.body.classList.add('dark-berry');
+        }
+        if (theme === 'light-berry') {
+                document.body.classList = '';
+                document.body.classList.add('light-berry');
         }
         fetch('/theme', {
         method: 'POST',
