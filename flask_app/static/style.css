@@ -123,12 +123,16 @@
 }
 
 .sidebar-logo {
-    width: 150px;
-    transition: 0.3s ease;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+    overflow: hidden;
 }
 
-.sidebar-logo:hover { transform: scale(1.05); }
+.sidebar-logo img {
+    transition: 0.3s ease;
+    width: 150px;
+    /*filter: drop-shadow(0 0px 6px var(--logo-shadow));*/
+    filter: drop-shadow(0 1000px 0px var(--logo-color));
+    transform: translateY(-1000px);
+    }
 
 .sidebar-footer {
     margin-top: auto;
@@ -517,7 +521,7 @@ font-size: 18px;
     line-height: 1;
     background: transparent;
     font-family: var(--font-body);
-            text-align: left;
+    text-align: left;
 
 
 }
@@ -529,7 +533,7 @@ font-size: 18px;
     transition: 0.2s;
     line-height: 1;
     font-family: var(--font-body);
-        text-align: left;
+    text-align: left;
 
     }
 

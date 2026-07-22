@@ -5,21 +5,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     themeSelect.addEventListener('change', (event) => {
         const theme = event.target.value;
-        if (theme === 'light-mode') {
-                document.body.classList = '';
-                document.body.classList.add('light-mode');
-        }
         if (theme === 'dark-mode') {
                 document.body.classList = '';
                 document.body.classList.add('dark-mode');
         }
-        if (theme === 'dark-berry') {
+        if (theme === 'purple') {
                 document.body.classList = '';
-                document.body.classList.add('dark-berry');
+                document.body.classList.add('purple');
         }
-        if (theme === 'light-berry') {
+        if (theme === 'light-mode') {
                 document.body.classList = '';
-                document.body.classList.add('light-berry');
+                document.body.classList.add('light-mode');
+        }
+        if (theme === 'light-green') {
+                document.body.classList = '';
+                document.body.classList.add('light-green');
+        }
+        if (theme === 'rose') {
+                document.body.classList = '';
+                document.body.classList.add('rose');
+        }
+        if (theme === 'sunset') {
+                document.body.classList = '';
+                document.body.classList.add('sunset');
+        }
+
+        if (theme === 'sunrise') {
+                document.body.classList = '';
+                document.body.classList.add('sunrise');
         }
         fetch('/theme', {
         method: 'POST',

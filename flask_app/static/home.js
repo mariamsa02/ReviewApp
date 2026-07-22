@@ -140,21 +140,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     themeSelect.addEventListener('change', (event) => {
         const theme = event.target.value;
-        if (theme === 'light-mode') {
-                document.body.classList = '';
-                document.body.classList.add('light-mode');
-        }
+
         if (theme === 'dark-mode') {
                 document.body.classList = '';
                 document.body.classList.add('dark-mode');
         }
-        if (theme === 'dark-berry') {
+        if (theme === 'purple') {
                 document.body.classList = '';
-                document.body.classList.add('dark-berry');
+                document.body.classList.add('purple');
         }
-        if (theme === 'light-berry') {
+        if (theme === 'light-mode') {
                 document.body.classList = '';
-                document.body.classList.add('light-berry');
+                document.body.classList.add('light-mode');
+        }
+        if (theme === 'light-green') {
+                document.body.classList = '';
+                document.body.classList.add('light-green');
+        }
+        if (theme === 'rose') {
+                document.body.classList = '';
+                document.body.classList.add('rose');
+        }
+        if (theme === 'sunset') {
+                document.body.classList = '';
+                document.body.classList.add('sunset');
+        }
+
+        if (theme === 'sunrise') {
+                document.body.classList = '';
+                document.body.classList.add('sunrise');
         }
         fetch('/theme', {
         method: 'POST',
@@ -200,12 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const textEl = btn.querySelector('.sidebar-text');
             const text = textEl ? textEl.innerText.trim() : "";
 
-           if (currentCategory === "Movie" && text === "Movies") btn.style.background = "var(--accent-color)";
-                else if (currentCategory === "TV" && text === "TV Shows") btn.style.background = "var(--accent-color)";
-                else if (currentCategory === "Book" && text === "Books") btn.style.background = "var(--accent-color)";
-                else if (currentRating && text === "⭐".repeat(parseInt(currentRating))) btn.style.background = "var(--accent-color)";
-                // for custom categories, text and category should be identical
-                else if (currentCategory === text) btn.style.background = "var(--accent-color)";
+           if (currentCategory === "Movie" && text === "Movies" || currentCategory === "TV" && text === "TV Shows" ||
+                currentCategory === "Book" && text === "Books" || currentRating && text === "⭐".repeat(parseInt(currentRating)) ||
+                currentCategory === text) {
+                btn.style.background = "var(--accent-color)";
+                 btn.style.color = "var(--text-white)";}
 
 
 
