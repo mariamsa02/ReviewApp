@@ -135,27 +135,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deleteForm = document.getElementById("delete-form");
 
-    const themeSelect = document.getElementById('theme-toggle');
-    themeSelect.value = document.body.className;
+    const themeButtons = document.querySelectorAll('.theme-swatch');
 
-    themeSelect.addEventListener('change', (event) => {
-        const theme = event.target.value;
+    themeButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const theme = btn.value;
+        document.querySelector('.active')?.classList.remove('active');
+        this.classList.add('active');
 
-        if (theme === 'dark-mode') {
+        if (theme === 'dark') {
                 document.body.classList = '';
-                document.body.classList.add('dark-mode');
+                document.body.classList.add('dark');
         }
         if (theme === 'purple') {
                 document.body.classList = '';
                 document.body.classList.add('purple');
         }
-        if (theme === 'light-mode') {
+        if (theme === 'light') {
                 document.body.classList = '';
-                document.body.classList.add('light-mode');
+                document.body.classList.add('light');
         }
-        if (theme === 'light-green') {
+        if (theme === 'green') {
                 document.body.classList = '';
-                document.body.classList.add('light-green');
+                document.body.classList.add('green');
         }
         if (theme === 'rose') {
                 document.body.classList = '';
@@ -165,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList = '';
                 document.body.classList.add('sunset');
         }
-
         if (theme === 'sunrise') {
                 document.body.classList = '';
                 document.body.classList.add('sunrise');
@@ -174,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ theme: theme })
+    });
     });
     });
 

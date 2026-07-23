@@ -8,7 +8,7 @@
 
 
 /* THEME 1/MAIN */
-:root {
+:root, .dark {
     --accent-color: #FF6BB5;
     --accent-hover: #ff52b7;
     --bg-main: #1A1A1A;
@@ -53,7 +53,7 @@ button { cursor: pointer; border: none; outline: none; }
 
 
 /*THEME 2*/
-body.light-mode {
+.light {
     --accent-color: #6B7FD9;
     --accent-hover: #5A6FC8;
 
@@ -74,18 +74,18 @@ body.light-mode {
 }
 
 
-body.light-mode .review-btn:hover {
+body.light .review-btn:hover {
     color: var(--text-white);
 }
 
-body.light-mode .search-container:focus-within .search-icon {
+body.light .search-container:focus-within .search-icon {
 color: var(--text-white);
 }
 
 
 
 /*THEME 3*/
-body.rose {
+.rose {
     --accent-color: #1E3FA8;
     --accent-hover: #f38aa7;
 
@@ -127,11 +127,11 @@ body.rose .review-btn:hover {
 
 
 /*THEME 4*/
-body.sunset {
+.sunset {
     --accent-color: #FF9640;
     --accent-hover: #ec7a1e;
 
-    --bg-main: #3A2050;
+    --bg-main: linear-gradient(#5B3A9B, #FF9640 55%, #FF6BB5);
     --bg-card: #4E2A6B;
     --bg-overlay: rgba(74, 144, 217, 0.05);
 
@@ -159,11 +159,11 @@ body.sunset .review-btn:hover {
 
 /*THEME 5*/
 
-body.sunrise {
+.sunrise {
     --accent-color: #6171d7;
     --accent-hover: #5757d0;
 
-    --bg-main: #24346B;
+    --bg-main: linear-gradient(#24346B, #F0AAC7 55%, #F5E29B);
     --bg-card: #fdf3da;
     --bg-overlay: rgba(74, 144, 217, 0.05);
 
@@ -227,7 +227,7 @@ border-color: var(--border-color);
 
 
 /*THEME 6*/
-body.light-green {
+.green {
     --accent-color: #437b67;
     --accent-hover: #366655;
 
@@ -246,12 +246,12 @@ body.light-green {
     --text-dark: #0d111e;
 }
 
-body.light-green .search-icon, body.light-green .search-btn {
+body.green .search-icon, body.green .search-btn {
 color: var(--text-white);
 }
 
 /*THEME 7*/
-body.purple {
+.purple {
     --accent-color: #B24BF3;
     --accent-hover: #C97AFF;
 

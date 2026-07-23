@@ -165,11 +165,11 @@
 
 /* LOGOUT BUTTON */
 #logout-btn {
-=  }
+  }
 
 
 /* THEME TOGGLE IN NAV-MENU */
-#theme-toggle {
+/*#theme-toggle {
     background: none;
     border: none;
     width: 100%;
@@ -187,7 +187,8 @@ cursor: pointer;
     background: var(--bg-overlay);
     color: var(--accent-color);
     transform: translateX(5px);
-}
+}*/
+
 
 
 /* CATEGORY SIDEBAR (Middle-Left) */
@@ -253,6 +254,7 @@ cursor: pointer;
     margin-left: calc(var(--sidebar-width) + 260px);
     padding: 48px;
     min-height: 100vh;
+    position: relative;
 }
 
 .main-content.single-sidebar {
@@ -1125,3 +1127,98 @@ margin-top: 10px;
         color: var(--text-secondary);
 
     }
+
+
+/*THEME BUTTON*/
+.theme-menu {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    display: inline-block;
+}
+
+
+.theme-btn {
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  line-height: 1;
+}
+
+
+.options-container {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    min-width: 160px;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.theme-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 12px;
+    width: 240px;
+}
+
+.theme-swatch {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-swatch:hover {
+    transform: scale(1.05);
+}
+
+.theme-swatch.active {
+    border-color: var(--accent-color);
+
+}
+
+.theme-swatch-preview {
+    width: 100%;
+    height: 24px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.theme-swatch-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.theme-swatch-label {
+    font-size: 9px;
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: bold;
+}
+
+.theme-btn:hover {color: var(--accent-color);}
+
+.theme-menu:hover .options-container {display: block;}
+
+.theme-swatch { background: var(--bg-card); }
+.theme-swatch-preview { background: var(--bg-main); }
+.theme-swatch-dot { background: var(--accent-color); }
+.theme-swatch-label { color: var(--text-secondary); }
